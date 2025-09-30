@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const blogPosts = [
+	{
+		id: 'getting-started-with-ai',
+		title: 'Getting Started with AI in Healthcare',
+		excerpt: 'Exploring the intersection of artificial intelligence and biomedical research, and how students can get involved.',
+		date: '2024-03-15',
+		readTime: '5 min read',
+		tags: ['AI', 'Healthcare', 'Research']
+	},
+	{
+		id: 'building-scalable-web-apps',
+		title: 'Building Scalable Web Applications',
+		excerpt: 'Key principles and technologies for creating web applications that can grow with your user base.',
+		date: '2024-03-10',
+		readTime: '8 min read',
+		tags: ['Web Development', 'React', 'Architecture']
+	},
+	{
+		id: 'data-science-for-beginners',
+		title: 'Data Science for Computer Science Students',
+		excerpt: 'A practical guide to getting started with data science, covering essential tools and techniques.',
+		date: '2024-03-05',
+		readTime: '6 min read',
+		tags: ['Data Science', 'Python', 'Career']
+	}
+];
+---
+
+<Layout title="Blog - Julia Kang" description="Thoughts on technology, AI, web development, and my journey in computer science and biomedical research.">
+	<section class="blog-hero">
+		<div class="container">
+			<h1 class="page-title">Blog</h1>
+			<p class="page-subtitle">
+				Thoughts on technology, AI, web development, and my journey in computer science and biomedical research.
+			</p>
+		</div>
+	</section>
+
+	<section class="blog-content">
+		<div class="container">
+			<div class="blog-grid">
+				{blogPosts.map((post) => (
+					<article class="blog-card">
+						<div class="blog-card-content">
+							<div class="blog-meta">
+								<time class="blog-date">{new Date(post.date).toLocaleDateString('en-US', {
+									year: 'numeric',
+									month: 'long',
+									day: 'numeric'
+								})}</time>
+								<span class="blog-read-time">{post.readTime}</span>
+							</div>
+
+							<h2 class="blog-title">
+								{post.title}
+							</h2>
+
+							<p class="blog-excerpt">{post.excerpt}</p>
+
+							<div class="blog-tags">
+								{post.tags.map((tag) => (
+									<span class="blog-tag">{tag}</span>
+								))}
+							</div>
+
+							<span class="coming-soon">
+								Coming Soon
+							</span>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.blog-hero {
+		padding: 4rem 0;
+		background: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(10px);
+		text-align: center;
+	}
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 2rem;
+	}
+
+	.page-title {
+		font-size: 3rem;
+		font-weight: 700;
+		color: white;
+		margin-bottom: 1rem;
+	}
+
+	.page-subtitle {
+		font-size: 1.2rem;
+		color: rgba(255, 255, 255, 0.8);
+		max-width: 700px;
+		margin: 0 auto;
+		line-height: 1.6;
+	}
+
+	.blog-content {
+		padding: 4rem 0;
+		background: rgba(255, 255, 255, 0.95);
+	}
+
+	.blog-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		gap: 2rem;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	.blog-card {
+		background: white;
+		border-radius: 15px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		overflow: hidden;
+	}
+
+	.blog-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+	}
+
+	.blog-card-content {
+		padding: 2rem;
+	}
+
+	.blog-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+		font-size: 0.9rem;
+		color: #666;
+	}
+
+	.blog-date {
+		font-weight: 500;
+	}
+
+	.blog-read-time {
+		color: #999;
+	}
+
+	.blog-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+		line-height: 1.3;
+		color: #333;
+	}
+
+	.blog-excerpt {
+		color: #666;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+
+	.blog-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.blog-tag {
+		background: rgba(102, 126, 234, 0.1);
+		color: #667eea;
+		padding: 0.3rem 0.8rem;
+		border-radius: 20px;
+		font-size: 0.8rem;
+		font-weight: 500;
+	}
+
+	.coming-soon {
+		display: inline-block;
+		color: #999;
+		font-weight: 500;
+		font-size: 0.9rem;
+		padding: 0.5rem 1rem;
+		background: #f8f9fa;
+		border-radius: 20px;
+		border: 1px solid #e9ecef;
+	}
+
+	@media (max-width: 768px) {
+		.page-title {
+			font-size: 2.5rem;
+		}
+
+		.blog-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.blog-card-content {
+			padding: 1.5rem;
+		}
+
+		.blog-meta {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
+
+		.container {
+			padding: 0 1rem;
+		}
+	}
+</style>
