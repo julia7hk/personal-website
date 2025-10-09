@@ -1,4 +1,9 @@
-# ssh and servers 1/25/25
+---
+layout: ../../layouts/BlogPost.astro
+title: "SSH and Servers"
+date: "2025-01-25"
+description: "Notes on SSH configuration and server setup"
+---
 
 - if you want to make an ssh key, run the ssh-gen command (just google it)
 
