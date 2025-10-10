@@ -1,32 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const blogPosts = [
-	{
-		id: 'getting-started-with-ai',
-		title: 'Getting Started with AI in Healthcare',
-		excerpt: 'Exploring the intersection of artificial intelligence and biomedical research, and how students can get involved.',
-		date: '2024-03-15',
-		readTime: '5 min read',
-		tags: ['AI', 'Healthcare', 'Research']
-	},
-	{
-		id: 'building-scalable-web-apps',
-		title: 'Building Scalable Web Applications',
-		excerpt: 'Key principles and technologies for creating web applications that can grow with your user base.',
-		date: '2024-03-10',
-		readTime: '8 min read',
-		tags: ['Web Development', 'React', 'Architecture']
-	},
-	{
-		id: 'data-science-for-beginners',
-		title: 'Data Science for Computer Science Students',
-		excerpt: 'A practical guide to getting started with data science, covering essential tools and techniques.',
-		date: '2024-03-05',
-		readTime: '6 min read',
-		tags: ['Data Science', 'Python', 'Career']
-	}
-];
+// Get all markdown files from the blog directory
+const allPosts = await Astro.glob('./blog/*.md');
+
+// Transform posts to extract frontmatter and create blog post data
+const blogPosts = allPosts.map(post => {
+	// Extract just the filename without extension for the slug
+	const slug = post.file.split('/').pop()?.replace('.md', '') || '';
+	return {
+		url: `/blog/${slug}`,
+		title: post.frontmatter.title,
+		description: post.frontmatter.description || '',
+		date: post.frontmatter.date,
+		readTime: post.frontmatter.readTime || '3 min read',
+		tags: post.frontmatter.tags || []
+	};
+}).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
 <Layout title="Blog - Julia Kang" description="Thoughts on technology, AI, web development, and my journey in computer science and biomedical research.">
@@ -43,7 +33,7 @@ const blogPosts = [
 		<div class="container">
 			<div class="blog-grid">
 				{blogPosts.map((post) => (
-					<article class="blog-card">
+					<a href={post.url} class="blog-card">
 						<div class="blog-card-content">
 							<div class="blog-meta">
 								<time class="blog-date">{new Date(post.date).toLocaleDateString('en-US', {
@@ -58,19 +48,17 @@ const blogPosts = [
 								{post.title}
 							</h2>
 
-							<p class="blog-excerpt">{post.excerpt}</p>
+							<p class="blog-excerpt">{post.description}</p>
 
-							<div class="blog-tags">
-								{post.tags.map((tag) => (
-									<span class="blog-tag">{tag}</span>
-								))}
-							</div>
-
-							<span class="coming-soon">
-								Coming Soon
-							</span>
+							{post.tags && post.tags.length > 0 && (
+								<div class="blog-tags">
+									{post.tags.map((tag) => (
+										<span class="blog-tag">{tag}</span>
+									))}
+								</div>
+							)}
 						</div>
-					</article>
+					</a>
 				))}
 			</div>
 		</div>
@@ -125,6 +113,9 @@ const blogPosts = [
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 		transition: transform 0.3s ease, box-shadow 0.3s ease;
 		overflow: hidden;
+		text-decoration: none;
+		display: block;
+		color: inherit;
 	}
 
 	.blog-card:hover {
@@ -181,17 +172,6 @@ const blogPosts = [
 		border-radius: 20px;
 		font-size: 0.8rem;
 		font-weight: 500;
-	}
-
-	.coming-soon {
-		display: inline-block;
-		color: #999;
-		font-weight: 500;
-		font-size: 0.9rem;
-		padding: 0.5rem 1rem;
-		background: #f8f9fa;
-		border-radius: 20px;
-		border: 1px solid #e9ecef;
 	}
 
 	@media (max-width: 768px) {
