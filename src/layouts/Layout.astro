@@ -18,7 +18,7 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 		<title>{title}</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<nav class="navbar">
@@ -47,21 +47,20 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 	}
 
 	html {
-		font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+		font-family: 'IBM Plex Mono', 'Courier New', monospace;
 		font-size: 16px;
-		line-height: 1.6;
+		line-height: 1.65;
 	}
 
 	body {
-		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		background: #fafaf8;
 		min-height: 100vh;
-		color: #333;
+		color: #2a2a2a;
 	}
 
 	.navbar {
-		background: rgba(255, 255, 255, 0.95);
-		backdrop-filter: blur(10px);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+		background: #fafaf8;
+		border-bottom: 1px solid #d4d4d4;
 		position: fixed;
 		top: 0;
 		width: 100%;
@@ -70,7 +69,7 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 	}
 
 	.nav-container {
-		max-width: 1200px;
+		max-width: 900px;
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
@@ -79,10 +78,11 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 	}
 
 	.nav-logo {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: #333;
+		font-size: 1rem;
+		font-weight: 600;
+		color: #2a2a2a;
 		text-decoration: none;
+		letter-spacing: -0.02em;
 	}
 
 	.nav-menu {
@@ -91,19 +91,20 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 	}
 
 	.nav-link {
-		color: #666;
+		color: #6a6a6a;
 		text-decoration: none;
-		font-weight: 500;
-		transition: color 0.3s ease;
+		font-weight: 400;
+		font-size: 0.9rem;
+		transition: color 0.2s ease;
 	}
 
 	.nav-link:hover {
-		color: #667eea;
+		color: #2a2a2a;
 	}
 
 	main {
-		margin-top: 80px;
-		min-height: calc(100vh - 80px);
+		margin-top: 60px;
+		min-height: calc(100vh - 60px);
 	}
 
 	@media (max-width: 768px) {
@@ -116,7 +117,7 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 		}
 
 		.nav-link {
-			font-size: 0.9rem;
+			font-size: 0.85rem;
 		}
 	}
 </style>
