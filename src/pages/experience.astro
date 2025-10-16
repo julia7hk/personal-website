@@ -132,6 +132,29 @@ import Layout from '../layouts/Layout.astro';
 						</div>
 					</div>
 				</div>
+
+				<div class="leadership-card">
+					<div class="leadership-header">
+						<h3 class="organization">United Computations</h3>
+						<span class="role-duration">May 2023 – May 2024</span>
+					</div>
+					<h4 class="role">President, Lead Organizer</h4>
+					<ul class="leadership-achievements">
+						<li>Coordinated weekly club meetings and activities promoting various computing topics</li>
+						<li>Organized a <strong>24-hour in-person student hackathon with 150+ attendees</strong>, partnering with Major League Hacking</li>
+						<li>Raised $250 through a bake sale, managed logistics and teacher shifts, and hosted an AI/ML workshop for attendees</li>
+					</ul>
+					<div class="impact-stats">
+						<div class="stat">
+							<span class="stat-number">150+</span>
+							<span class="stat-label">Hackathon Attendees</span>
+						</div>
+						<div class="stat">
+							<span class="stat-number">24hr</span>
+							<span class="stat-label">Event Duration</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -360,6 +383,8 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.leadership-grid {
+		display: grid;
+		gap: 2.5rem;
 		max-width: 700px;
 		margin: 0 auto;
 	}
