@@ -19,12 +19,12 @@ const blogPosts = allPosts.map(post => {
 }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
 
-<Layout title="Blog - Julia Kang" description="Thoughts on technology, AI, web development, and my journey in computer science and biomedical research.">
+<Layout title="Blog - Julia Kang" description="Documentation of little projects or learning I do.">
 	<section class="blog-hero">
 		<div class="container">
 			<h1 class="page-title">Blog</h1>
 			<p class="page-subtitle">
-				Thoughts on technology, AI, web development, and my journey in computer science and biomedical research.
+				Documentation of little projects or learning i do.
 			</p>
 		</div>
 	</section>
@@ -32,11 +32,15 @@ const blogPosts = allPosts.map(post => {
 	<section class="blog-content">
 		<div class="container">
 			<div class="blog-grid">
-				{blogPosts.map((post) => (
+				{blogPosts.map((post) => {
+					// Parse date as local timezone to prevent day-off errors
+					const [year, month, day] = post.date.split('-').map(Number);
+					const localDate = new Date(year, month - 1, day);
+					return (
 					<a href={post.url} class="blog-card">
 						<div class="blog-card-content">
 							<div class="blog-meta">
-								<time class="blog-date">{new Date(post.date).toLocaleDateString('en-US', {
+								<time class="blog-date">{localDate.toLocaleDateString('en-US', {
 									year: 'numeric',
 									month: 'long',
 									day: 'numeric'
@@ -59,7 +63,7 @@ const blogPosts = allPosts.map(post => {
 							)}
 						</div>
 					</a>
-				))}
+				)})}
 			</div>
 		</div>
 	</section>
