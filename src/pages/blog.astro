@@ -13,7 +13,6 @@ const blogPosts = allPosts.map(post => {
 		title: post.frontmatter.title,
 		description: post.frontmatter.description || '',
 		date: post.frontmatter.date,
-		readTime: post.frontmatter.readTime || '3 min read',
 		tags: post.frontmatter.tags || []
 	};
 }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -45,7 +44,6 @@ const blogPosts = allPosts.map(post => {
 									month: 'long',
 									day: 'numeric'
 								})}</time>
-								<span class="blog-read-time">{post.readTime}</span>
 							</div>
 
 							<h2 class="blog-title">
@@ -131,8 +129,6 @@ const blogPosts = allPosts.map(post => {
 
 	.blog-meta {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
 		margin-bottom: 1rem;
 		font-size: 0.85rem;
 		color: #6a6a6a;
@@ -140,10 +136,6 @@ const blogPosts = allPosts.map(post => {
 
 	.blog-date {
 		font-weight: 500;
-	}
-
-	.blog-read-time {
-		color: #8a8a8a;
 	}
 
 	.blog-title {

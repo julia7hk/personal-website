@@ -1,11 +1,6 @@
 ---
-export interface Props {
-	title: string;
-	date: string;
-	description?: string;
-}
-
-const { title, date, description } = Astro.props;
+const { frontmatter } = Astro.props;
+const { title, date, description } = frontmatter;
 ---
 
 <!doctype html>
