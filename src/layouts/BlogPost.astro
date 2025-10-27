@@ -37,7 +37,6 @@ const { title, date, description } = frontmatter;
 						<time datetime={date}>{date}</time>
 					</div>
 					<h1 class="post-title">{title}</h1>
-					{description && <p class="post-description">{description}</p>}
 				</header>
 				<div class="post-content">
 					<slot />
