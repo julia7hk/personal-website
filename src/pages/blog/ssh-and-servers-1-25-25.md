@@ -4,6 +4,11 @@ title: "SSH and Servers"
 date: "2025-01-25"
 description: "Notes on SSH configuration and server setup"
 ---
+CS240: C Programming requires you to write all of your code in Vim on a PurdueCS-hosted server.
+
+By default, this would mean that you have to type in your Purdue credentials and pass DUO 2-factor authentication every single time.
+
+This is where SSH comes in :D
 
 - if you want to make an ssh key, run the ssh-gen command (just google it)
 
