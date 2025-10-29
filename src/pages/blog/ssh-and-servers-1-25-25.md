@@ -12,8 +12,16 @@ This is where SSH comes in :D
 
 - if you want to make an ssh key, run the ssh-gen command (just google it)
 
-- **you can find ssh keys in the .ssh/ dir**
-    - config file
+- **you can find ssh keys in the `.ssh/` dir on your own computer**
+    - `config` file within `.ssh/` directory
+
+        ```jsx
+        UseKeychain yes
+        AddKeysToAgent yes
+
+        Host data
+            User kang616
+        ```
 
         - Host names
         - User usernames
