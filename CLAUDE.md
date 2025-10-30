@@ -46,8 +46,35 @@ The codebase follows Astro's standard structure:
 
 ## Current Implementation
 
-The site currently uses the default Astro starter with:
-- Basic Layout component providing HTML structure
-- Welcome component with styled hero section and navigation links
-- Component-scoped CSS with modern styling (gradients, backdrop filters)
-- Responsive design with mobile breakpoints
+The personal website includes the following pages and features:
+
+### Pages
+- **index.astro** - Homepage with hero section, profile image, social links, and technical skills overview
+- **about.astro** - Detailed about page with education, comprehensive technical skills with icons, and areas of interest
+- **projects.astro** - Projects showcase (if exists)
+- **contact.astro** - Contact information (if exists)
+
+### Design System
+- **Color Scheme**: Minimal design with #fafaf8 background, #2a2a2a primary text, #4a4a4a secondary text
+- **Typography**: System fonts with careful letter-spacing and line-height
+- **Components**: Bordered cards, skill tags/badges, social media icons
+- **Responsive**: Mobile-first approach with breakpoints at 768px
+
+### Key Features
+- Profile image integration using Astro's Image component
+- Social media links (GitHub, LinkedIn, Email) with SVG icons
+- Technical skills organized by category:
+  - Languages (Python, TypeScript, JavaScript, C, Java, SQL, HTML, CSS, R)
+  - Web Frameworks/Libraries (React, Next.js, TailwindCSS, Flask, FastAPI, Prisma, React Native)
+  - AI Framework/Library (PyTorch, TensorFlow, NumPy, Pandas, Matplotlib)
+  - Databases (Postgres, Supabase, Firebase)
+  - Cloud (AWS, Google Compute Platform, Oracle Cloud, Netlify)
+- Icon-enhanced skill badges on about page using SVG logos
+- GPA display and coursework listing on about page
+- Areas of interest cards showcasing specializations
+
+### Styling Conventions
+- Component-scoped CSS in each .astro file
+- Consistent spacing with rem units
+- Border-based design with subtle hover effects
+- Clean, professional aesthetic suitable for a CS/AI student portfolio
