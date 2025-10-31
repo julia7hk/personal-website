@@ -5,16 +5,21 @@ date: "2025-10-13"
 description: "Debugging SSL errors, DNS issues, and learning about WordPress hosting during fall break"
 ---
 
-Fall break, accidentally fell asleep too early and now im awake
+Fall break, accidentally fell asleep too early and now im awake doing miscellaneous shenanigans like the sase website
 
-doing miscellaneous shenanigans like the sase website
+leo originally told me to let him know during winter break... but i figured i could do it now so why not !
 
-leo originally told me to let him know during winter break
+the [`sasepurdue.com`](http://sasepurdue.com) domain currently gives 
 
-but i figured i could do it now so why not!
+```
+This site can't provide a secure connection
+sasepurdue.com sent an invalid response.
+ERR_SSL_PROTOCOL_ERROR
+```
 
-the [`sasepurdue.com`](http://sasepurdue.com) domain currently gives
+# the process
 
+troubleshooting with google and gpt lol
 
 main focus is the `ERR_SSL_PROTOCOL_ERROR`
 
@@ -57,13 +62,15 @@ double check [`sasepurdue.com`](http://sasepurdue.com) on my phone
 
 it works..?
 
+um then the website and hosting settings weren't the problem... consider the caching on my computer?
+
 run `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder` 
 
 clears DNS things on your computer
 
 problem resolved ! 😭
 
-now we’re faced with
+now we’re faced with default hostgator website with absolutely nothing on it
 
 
 
@@ -107,7 +114,7 @@ go to hostgator wordpress database???
 
 no databases :/ not much else to do here
 
-# ok new website time lol
+**ok new website time lol**
 
 in the meantime… organizing the sase email
 
@@ -116,3 +123,16 @@ in the meantime… organizing the sase email
 - wordpress: website content
     - jetpack: wordpress plugin
     - elementor: wordpress plugin
+
+# conclusions: takeaways for me
+
+- wow a site called [`https://downforeveryoneorjustme.com/`](https://downforeveryoneorjustme.com/register.hostgator.com) exists
+- you can check secure certificate with ssl checker ([https://www.sslshopper.com/ssl-checker.html](https://www.sslshopper.com/ssl-checker.html))
+- you can double check `https://` and `http://`
+- you can check ip address by doing `ping sasepurdue.com` (or any other address with any other url)
+
+- run `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder` to clear DNS cache on computer
+
+- the [`https://sasepurdue.com/wp-login`](https://sasepurdue.com/wp-login) should work and that's where people can edit the website after wordpress is set up
+
+
