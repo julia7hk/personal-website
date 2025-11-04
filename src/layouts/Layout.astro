@@ -24,6 +24,11 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 		<nav class="navbar">
 			<div class="nav-container">
 				<a href="/" class="nav-logo">Julia Kang</a>
+				<button class="nav-toggle" aria-label="Toggle navigation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
 				<div class="nav-menu">
 					<a href="/" class="nav-link">Home</a>
 					<a href="/about" class="nav-link">About</a>
@@ -36,6 +41,32 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 		<main>
 			<slot />
 		</main>
+		<script>
+			const navToggle = document.querySelector('.nav-toggle');
+			const navMenu = document.querySelector('.nav-menu');
+
+			navToggle?.addEventListener('click', () => {
+				navToggle.classList.toggle('active');
+				navMenu?.classList.toggle('active');
+			});
+
+			// Close menu when a link is clicked
+			const navLinks = document.querySelectorAll('.nav-link');
+			navLinks.forEach(link => {
+				link.addEventListener('click', () => {
+					navToggle?.classList.remove('active');
+					navMenu?.classList.remove('active');
+				});
+			});
+
+			// Close menu when clicking outside
+			document.addEventListener('click', (e) => {
+				if (!navToggle?.contains(e.target as Node) && !navMenu?.contains(e.target as Node)) {
+					navToggle?.classList.remove('active');
+					navMenu?.classList.remove('active');
+				}
+			});
+		</script>
 	</body>
 </html>
 
@@ -85,6 +116,37 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 		letter-spacing: -0.02em;
 	}
 
+	.nav-toggle {
+		display: none;
+		flex-direction: column;
+		gap: 4px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5rem;
+		z-index: 1001;
+	}
+
+	.nav-toggle span {
+		width: 24px;
+		height: 2px;
+		background: #2a2a2a;
+		transition: all 0.3s ease;
+		border-radius: 2px;
+	}
+
+	.nav-toggle.active span:nth-child(1) {
+		transform: translateY(6px) rotate(45deg);
+	}
+
+	.nav-toggle.active span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.nav-toggle.active span:nth-child(3) {
+		transform: translateY(-6px) rotate(-45deg);
+	}
+
 	.nav-menu {
 		display: flex;
 		gap: 2rem;
@@ -112,12 +174,38 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 			padding: 0 1rem;
 		}
 
+		.nav-toggle {
+			display: flex;
+		}
+
 		.nav-menu {
-			gap: 1rem;
+			position: fixed;
+			top: 60px;
+			right: -100%;
+			width: 70%;
+			max-width: 300px;
+			height: calc(100vh - 60px);
+			background: #fafaf8;
+			border-left: 1px solid #d4d4d4;
+			flex-direction: column;
+			gap: 0;
+			padding: 2rem 0;
+			transition: right 0.3s ease;
+			box-shadow: -2px 0 8px rgba(0, 0, 0, 0.05);
+		}
+
+		.nav-menu.active {
+			right: 0;
 		}
 
 		.nav-link {
-			font-size: 0.85rem;
+			font-size: 1rem;
+			padding: 1rem 2rem;
+			border-bottom: 1px solid #e4e4e4;
+		}
+
+		.nav-link:hover {
+			background: #f0f0f0;
 		}
 	}
 </style>
