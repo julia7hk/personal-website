@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// md files from /blog directory
 const allPosts = await Astro.glob('./blog/*.md');
+
 
 // Transform posts to extract frontmatter and create blog post data
 const blogPosts = allPosts.map(post => {
-	// Extract just the filename without extension for the slug
+	// extract filename for slug
 	const slug = post.file.split('/').pop()?.replace('.md', '') || '';
 
 	// Extract project name from title (everything before " - Day" or just the title)
@@ -14,12 +14,8 @@ const blogPosts = allPosts.map(post => {
 	const projectMatch = title.match(/^(.+?)(?:\s*-\s*(?:Day|CSI Day|Build Day)\s*\d+)?$/);
 	const projectName = projectMatch ? projectMatch[1].trim() : title;
 
-	// Prioritize frontmatter dayNumber over title extraction
-	let dayNumber = post.frontmatter.dayNumber || null;
-	if (dayNumber === null) {
-		const dayMatch = title.match(/(?:Day|CSI Day|Build Day)\s*(\d+)/i);
-		dayNumber = dayMatch ? parseInt(dayMatch[1]) : null;
-	}
+
+	const dayNumber = post.frontmatter.dayNumber || null;
 
 	return {
 		url: `/blog/${slug}`,
