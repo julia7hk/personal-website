@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import profileImage from '../assets/profile.JPG';
+
 export interface Props {
 	title?: string;
 	description?: string;
@@ -23,7 +26,10 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 	<body>
 		<nav class="navbar">
 			<div class="nav-container">
-				<a href="/" class="nav-logo">Julia Kang</a>
+				<a href="/" class="nav-logo">
+					<Image src={profileImage} alt="Julia Kang" class="nav-profile-image" />
+					<span>Julia Kang</span>
+				</a>
 				<button class="nav-toggle" aria-label="Toggle navigation">
 					<span></span>
 					<span></span>
@@ -114,6 +120,13 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 		color: #2a2a2a;
 		text-decoration: none;
 		letter-spacing: -0.02em;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.nav-profile-image {
+		display: none;
 	}
 
 	.nav-toggle {
@@ -172,6 +185,15 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 	@media (max-width: 768px) {
 		.nav-container {
 			padding: 0 1rem;
+		}
+
+		.nav-profile-image {
+			display: block;
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 2px solid #2a2a2a;
 		}
 
 		.nav-toggle {
