@@ -3,6 +3,7 @@ layout: ../../layouts/BlogPost.astro
 title: "SASE Sniping Discord Bot"
 date: "2025-10-21"
 description: "Building a Discord bot to automatically notify mentors when their class time arrives"
+dayNumber: 1
 ---
 
 group 3 has compiled a few classes for each of the mentors

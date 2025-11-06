@@ -11,12 +11,15 @@ const blogPosts = allPosts.map(post => {
 
 	// Extract project name from title (everything before " - Day" or just the title)
 	const title = post.frontmatter.title;
-	const projectMatch = title.match(/^(.+?)(?:\s*-\s*(?:Day|CSI Day)\s*\d+)?$/);
+	const projectMatch = title.match(/^(.+?)(?:\s*-\s*(?:Day|CSI Day|Build Day)\s*\d+)?$/);
 	const projectName = projectMatch ? projectMatch[1].trim() : title;
 
-	// Extract day number if it exists
-	const dayMatch = title.match(/(?:Day|CSI Day)\s*(\d+)/i);
-	const dayNumber = dayMatch ? parseInt(dayMatch[1]) : null;
+	// Prioritize frontmatter dayNumber over title extraction
+	let dayNumber = post.frontmatter.dayNumber || null;
+	if (dayNumber === null) {
+		const dayMatch = title.match(/(?:Day|CSI Day|Build Day)\s*(\d+)/i);
+		dayNumber = dayMatch ? parseInt(dayMatch[1]) : null;
+	}
 
 	return {
 		url: `/blog/${slug}`,
@@ -38,13 +41,13 @@ const groupedPosts = blogPosts.reduce((acc, post) => {
 	return acc;
 }, {} as Record<string, typeof blogPosts>);
 
-// Sort posts within each group by day number
+// Sort posts within each group by day number (descending - most recent first)
 Object.values(groupedPosts).forEach(group => {
 	group.sort((a, b) => {
 		if (a.dayNumber !== null && b.dayNumber !== null) {
-			return a.dayNumber - b.dayNumber;
+			return b.dayNumber - a.dayNumber; // Reverse order for descending
 		}
-		return new Date(a.date).getTime() - new Date(b.date).getTime();
+		return new Date(b.date).getTime() - new Date(a.date).getTime(); // Reverse order for descending
 	});
 });
 
@@ -78,7 +81,9 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 			<div class="blog-grid">
 				{projects.map(({ projectName, posts }) => (
 					<div class="project-group">
-						<h2 class="project-title">{projectName}</h2>
+						<div class="project-header">
+							<h2 class="project-title">{projectName}</h2>
+						</div>
 						<div class="project-posts">
 							{posts.map((post) => {
 								const [year, month, day] = post.date.split('-').map(Number);
@@ -206,14 +211,49 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 		gap: 1rem;
 	}
 
+	.project-header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 2px solid #2a2a2a;
+	}
+
 	.project-title {
 		font-size: 1.5rem;
 		font-weight: 600;
 		color: #2a2a2a;
-		margin-bottom: 0.5rem;
+		margin: 0;
 		letter-spacing: -0.02em;
-		padding-bottom: 0.75rem;
-		border-bottom: 2px solid #2a2a2a;
+	}
+
+	.day-numbers {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	.day-number-link {
+		color: #6a6a6a;
+		text-decoration: none;
+		font-size: 0.85rem;
+		font-weight: 500;
+		padding: 0.25rem 0.5rem;
+		border: 1px solid #d4d4d4;
+		border-radius: 4px;
+		transition: all 0.2s ease;
+	}
+
+	.day-number-link:hover {
+		color: #2a2a2a;
+		border-color: #2a2a2a;
+		background: #f0f0f0;
+	}
+
+	.day-separator {
+		color: #d4d4d4;
+		font-size: 0.7rem;
 	}
 
 	.project-posts {
