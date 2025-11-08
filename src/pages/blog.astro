@@ -1,21 +1,65 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// Get all markdown files from the blog directory
 const allPosts = await Astro.glob('./blog/*.md');
+
 
 // Transform posts to extract frontmatter and create blog post data
 const blogPosts = allPosts.map(post => {
-	// Extract just the filename without extension for the slug
+	// extract filename for slug
 	const slug = post.file.split('/').pop()?.replace('.md', '') || '';
+
+	// Extract project name from title (everything before " - Day" or just the title)
+	const title = post.frontmatter.title;
+	const projectMatch = title.match(/^(.+?)(?:\s*-\s*(?:Day|CSI Day|Build Day)\s*\d+)?$/);
+	const projectName = projectMatch ? projectMatch[1].trim() : title;
+
+
+	const dayNumber = post.frontmatter.dayNumber || null;
+
 	return {
 		url: `/blog/${slug}`,
-		title: post.frontmatter.title,
+		title: title,
 		description: post.frontmatter.description || '',
 		date: post.frontmatter.date,
-		tags: post.frontmatter.tags || []
+		tags: post.frontmatter.tags || [],
+		projectName: projectName,
+		dayNumber: dayNumber
 	};
 }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// Group posts by project
+const groupedPosts = blogPosts.reduce((acc, post) => {
+	if (!acc[post.projectName]) {
+		acc[post.projectName] = [];
+	}
+	acc[post.projectName].push(post);
+	return acc;
+}, {} as Record<string, typeof blogPosts>);
+
+// Sort posts within each group by day number (descending - most recent first)
+Object.values(groupedPosts).forEach(group => {
+	group.sort((a, b) => {
+		if (a.dayNumber !== null && b.dayNumber !== null) {
+			return b.dayNumber - a.dayNumber; // Reverse order for descending
+		}
+		return new Date(b.date).getTime() - new Date(a.date).getTime(); // Reverse order for descending
+	});
+});
+
+// Convert to array and determine if it's a project or standalone post
+const projectGroups = Object.entries(groupedPosts)
+	.map(([projectName, posts]) => ({
+		projectName,
+		posts,
+		latestDate: Math.max(...posts.map(p => new Date(p.date).getTime())),
+		isProject: posts.length > 1 || posts.some(p => p.dayNumber !== null)
+	}))
+	.sort((a, b) => b.latestDate - a.latestDate);
+
+// Separate projects and standalone posts
+const projects = projectGroups.filter(g => g.isProject);
+const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.posts);
 ---
 
 <Layout title="Blog - Julia Kang" description="Documentation of little projects or learning I do.">
@@ -31,37 +75,86 @@ const blogPosts = allPosts.map(post => {
 	<section class="blog-content">
 		<div class="container">
 			<div class="blog-grid">
-				{blogPosts.map((post) => {
-					// Parse date as local timezone to prevent day-off errors
-					const [year, month, day] = post.date.split('-').map(Number);
-					const localDate = new Date(year, month - 1, day);
-					return (
-					<a href={post.url} class="blog-card">
-						<div class="blog-card-content">
-							<div class="blog-meta">
-								<time class="blog-date">{localDate.toLocaleDateString('en-US', {
-									year: 'numeric',
-									month: 'long',
-									day: 'numeric'
-								})}</time>
-							</div>
-
-							<h2 class="blog-title">
-								{post.title}
-							</h2>
-
-							<p class="blog-excerpt">{post.description}</p>
-
-							{post.tags && post.tags.length > 0 && (
-								<div class="blog-tags">
-									{post.tags.map((tag) => (
-										<span class="blog-tag">{tag}</span>
-									))}
-								</div>
-							)}
+				{projects.map(({ projectName, posts }) => (
+					<div class="project-group">
+						<div class="project-header">
+							<h2 class="project-title">{projectName}</h2>
 						</div>
-					</a>
-				)})}
+						<div class="project-posts">
+							{posts.map((post) => {
+								const [year, month, day] = post.date.split('-').map(Number);
+								const localDate = new Date(year, month - 1, day);
+								return (
+									<a href={post.url} class="blog-card">
+										<div class="blog-card-content">
+											<div class="blog-meta">
+												<time class="blog-date">{localDate.toLocaleDateString('en-US', {
+													year: 'numeric',
+													month: 'long',
+													day: 'numeric'
+												})}</time>
+												{post.dayNumber && (
+													<span class="day-badge">Day {post.dayNumber}</span>
+												)}
+											</div>
+
+											<h3 class="blog-title">
+												{post.title}
+											</h3>
+
+											{post.tags && post.tags.length > 0 && (
+												<div class="blog-tags">
+													{post.tags.map((tag) => (
+														<span class="blog-tag">{tag}</span>
+													))}
+												</div>
+											)}
+										</div>
+									</a>
+								);
+							})}
+						</div>
+					</div>
+				))}
+
+				{standalonePosts.length > 0 && (
+					<div class="project-group">
+						<h2 class="project-title">Miscellaneous</h2>
+						<div class="project-posts">
+							{standalonePosts.map((post) => {
+								const [year, month, day] = post.date.split('-').map(Number);
+								const localDate = new Date(year, month - 1, day);
+								return (
+									<a href={post.url} class="blog-card standalone">
+										<div class="blog-card-content">
+											<div class="blog-meta">
+												<time class="blog-date">{localDate.toLocaleDateString('en-US', {
+													year: 'numeric',
+													month: 'long',
+													day: 'numeric'
+												})}</time>
+											</div>
+
+											<h2 class="blog-title">
+												{post.title}
+											</h2>
+
+											<p class="blog-excerpt">{post.description}</p>
+
+											{post.tags && post.tags.length > 0 && (
+												<div class="blog-tags">
+													{post.tags.map((tag) => (
+														<span class="blog-tag">{tag}</span>
+													))}
+												</div>
+											)}
+										</div>
+									</a>
+								);
+							})}
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	</section>
@@ -103,9 +196,66 @@ const blogPosts = allPosts.map(post => {
 	.blog-grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 2rem;
+		gap: 3rem;
 		max-width: 700px;
 		margin: 0 auto;
+	}
+
+	.project-group {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.project-header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 2px solid #2a2a2a;
+	}
+
+	.project-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #2a2a2a;
+		margin: 0;
+		letter-spacing: -0.02em;
+	}
+
+	.day-numbers {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	.day-number-link {
+		color: #6a6a6a;
+		text-decoration: none;
+		font-size: 0.85rem;
+		font-weight: 500;
+		padding: 0.25rem 0.5rem;
+		border: 1px solid #d4d4d4;
+		border-radius: 4px;
+		transition: all 0.2s ease;
+	}
+
+	.day-number-link:hover {
+		color: #2a2a2a;
+		border-color: #2a2a2a;
+		background: #f0f0f0;
+	}
+
+	.day-separator {
+		color: #d4d4d4;
+		font-size: 0.7rem;
+	}
+
+	.project-posts {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
 
 	.blog-card {
@@ -119,6 +269,10 @@ const blogPosts = allPosts.map(post => {
 		color: inherit;
 	}
 
+	.project-group .blog-card {
+		border-radius: 4px;
+	}
+
 	.blog-card:hover {
 		border-left-color: #6a6a6a;
 	}
@@ -127,15 +281,36 @@ const blogPosts = allPosts.map(post => {
 		padding: 1.5rem;
 	}
 
+	.project-group .blog-card-content {
+		padding: 0.75rem 1rem;
+	}
+
 	.blog-meta {
 		display: flex;
+		align-items: center;
+		gap: 0.75rem;
 		margin-bottom: 1rem;
 		font-size: 0.85rem;
 		color: #6a6a6a;
 	}
 
+	.project-group .blog-meta {
+		margin-bottom: 0.5rem;
+		font-size: 0.8rem;
+	}
+
 	.blog-date {
 		font-weight: 500;
+	}
+
+	.day-badge {
+		background: #2a2a2a;
+		color: #fafaf8;
+		padding: 0.15rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
 	}
 
 	.blog-title {
@@ -145,6 +320,11 @@ const blogPosts = allPosts.map(post => {
 		line-height: 1.4;
 		color: #2a2a2a;
 		letter-spacing: -0.01em;
+	}
+
+	.project-group .blog-title {
+		font-size: 1rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.blog-excerpt {
@@ -160,6 +340,10 @@ const blogPosts = allPosts.map(post => {
 		gap: 0.5rem;
 	}
 
+	.project-group .blog-tags {
+		gap: 0.35rem;
+	}
+
 	.blog-tag {
 		background: transparent;
 		color: #6a6a6a;
@@ -168,6 +352,11 @@ const blogPosts = allPosts.map(post => {
 		border-radius: 4px;
 		font-size: 0.8rem;
 		font-weight: 400;
+	}
+
+	.project-group .blog-tag {
+		padding: 0.2rem 0.5rem;
+		font-size: 0.75rem;
 	}
 
 	@media (max-width: 768px) {
