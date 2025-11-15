@@ -102,6 +102,10 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 												{post.title}
 											</h3>
 
+											{post.description && (
+												<p class="blog-excerpt">{post.description}</p>
+											)}
+
 											{post.tags && post.tags.length > 0 && (
 												<div class="blog-tags">
 													{post.tags.map((tag) => (
@@ -332,6 +336,12 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 		line-height: 1.7;
 		margin-bottom: 1rem;
 		font-size: 0.9rem;
+	}
+
+	.project-group .blog-excerpt {
+		font-size: 0.85rem;
+		margin-bottom: 0.75rem;
+		line-height: 1.6;
 	}
 
 	.blog-tags {
