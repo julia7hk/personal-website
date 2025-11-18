@@ -11,6 +11,7 @@ had an idea to make a discord bot that automatically sent a message to say it wa
 
 
 first go to discord and make an application for a discord app
+https://discord.com/developers/applications/
 
 ### selected app
 
@@ -39,8 +40,11 @@ Bot permissions:
 
 Integration type: guild install (discord bot in a server)
 
-**obtain generated url:** 
+**obtain: generated url** 
 
 enter url into browser, add it to a server
+
+![Discord bot added to server](/blog-images/sase-sniping-discord-bot/image.png)
+
 
 yayy made a bot

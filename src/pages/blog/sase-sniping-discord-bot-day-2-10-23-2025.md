@@ -18,6 +18,8 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
+^ setting up python environment
+
 ```bash
 pip install discord.py python-dotenv schedule
 ```
@@ -29,6 +31,9 @@ pip install discord.py python-dotenv schedule
 ```bash
 DISCORD_TOKEN=your_bot_token_here
 ```
+
+^ run direnv allow 
+
 
 ## step 3. basic bot structure
 
@@ -49,6 +54,8 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 ```
 
 ## step 4. schedule data structure
+
+in `bot.py`:
 
 ```python
 # Message template

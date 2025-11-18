@@ -59,19 +59,27 @@ python bot.py
 
 whoops, intermission for an error
 
-toggle all three of these on
+![Discord bot permissions error](/blog-images/sase-sniping-discord-bot-day-3/image.png)
 
+toggle all three of these on
 
 omg yayyy my bot is online
 
+![Bot is online](/blog-images/sase-sniping-discord-bot-day-3/image%201.png)
 
 WOWOW
 
+![Bot sending messages](/blog-images/sase-sniping-discord-bot-day-3/image%202.png)
+
+![Bot messages in Discord](/blog-images/sase-sniping-discord-bot-day-3/image%203.png)
 
 oop it keeps sending…?
+
+![Bot keeps sending messages](/blog-images/sase-sniping-discord-bot-day-3/image%204.png)
+
 ill fix that later….
 
-## ok i can run the bot. now how do i host it somewhere so that i dont have to run it on my computer 24/7?
+### ok i can run the bot. now how do i host it somewhere so that i dont have to run it on my computer 24/7?
 
 host it on a server !
 
