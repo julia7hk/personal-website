@@ -85,11 +85,3 @@ git pull
 now it should have updated class schedule data
 
 we’ll see if this works 🤞
-
-next day update:
-
-![Bot notification working successfully](/blog-images/sase-sniping-discord-bot-day-5/image%201.png)
-
-its working 😁 😁 😁
-
-will make minor changes and then ill see if the other mentors like this idea

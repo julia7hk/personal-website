@@ -67,6 +67,7 @@ omg yayyy my bot is online
 
 ![Bot is online](/blog-images/sase-sniping-discord-bot-day-3/image%201.png)
 
+
 WOWOW
 
 ![Bot sending messages](/blog-images/sase-sniping-discord-bot-day-3/image%202.png)
