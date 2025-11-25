@@ -202,7 +202,6 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 
 	.blog-grid {
 		display: grid;
-		grid-template-columns: 1fr;
 		gap: 3rem;
 		max-width: 700px;
 		margin: 0 auto;
@@ -230,35 +229,6 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 		letter-spacing: -0.02em;
 	}
 
-	.day-numbers {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-		align-items: center;
-	}
-
-	.day-number-link {
-		color: #6a6a6a;
-		text-decoration: none;
-		font-size: 0.85rem;
-		font-weight: 500;
-		padding: 0.25rem 0.5rem;
-		border: 1px solid #d4d4d4;
-		border-radius: 4px;
-		transition: all 0.2s ease;
-	}
-
-	.day-number-link:hover {
-		color: #2a2a2a;
-		border-color: #2a2a2a;
-		background: #f0f0f0;
-	}
-
-	.day-separator {
-		color: #d4d4d4;
-		font-size: 0.7rem;
-	}
-
 	.project-posts {
 		display: flex;
 		flex-direction: column;
@@ -266,11 +236,10 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 	}
 
 	.blog-card {
-		background: transparent;
 		border: 1px solid #e4e4e4;
 		border-left: 3px solid #5372aa;
 		border-radius: 8px;
-		transition: border-color 0.2s ease;
+		transition: border-left-color 0.2s ease;
 		text-decoration: none;
 		display: block;
 		color: inherit;
@@ -363,13 +332,11 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 	}
 
 	.blog-tag {
-		background: transparent;
 		color: #6a6a6a;
 		padding: 0.25rem 0.6rem;
 		border: 1px solid #d4d4d4;
 		border-radius: 4px;
 		font-size: 0.8rem;
-		font-weight: 400;
 	}
 
 	.project-group .blog-tag {
