@@ -75,11 +75,13 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 	<section class="blog-content">
 		<div class="container">
 			<div class="blog-grid">
-				{projects.map(({ projectName, posts }) => (
-					<div class="project-group">
-						<div class="project-header">
-							<h2 class="project-title">{projectName}</h2>
-						</div>
+				{projects.map(({ projectName, posts }) => {
+					const slug = projectName.toLowerCase().replace(/\s+/g, '-');
+					return (
+						<div class="project-group" id={slug}>
+							<div class="project-header">
+								<h2 class="project-title">{projectName}</h2>
+							</div>
 						<div class="project-posts">
 							{posts.map((post) => {
 								const [year, month, day] = post.date.split('-').map(Number);
@@ -119,10 +121,11 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 							})}
 						</div>
 					</div>
-				))}
+					);
+				})}
 
 				{standalonePosts.length > 0 && (
-					<div class="project-group">
+					<div class="project-group" id="miscellaneous">
 						<h2 class="project-title">Miscellaneous</h2>
 						<div class="project-posts">
 							{standalonePosts.map((post) => {
