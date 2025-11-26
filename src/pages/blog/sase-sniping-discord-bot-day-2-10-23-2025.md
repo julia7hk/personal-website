@@ -6,6 +6,10 @@ description: "Setting up the Python environment and building the basic bot struc
 dayNumber: 2
 ---
 
+now that i have a discord bot made, i need the actual bot logic for it to run
+
+---
+
 ## step 1. setup python environment
 
 `cd` into the correct directory. then run:
@@ -35,7 +39,7 @@ DISCORD_TOKEN=your_bot_token_here
 ^ run direnv allow 
 
 
-## step 3. basic bot structure
+## step 3. basic bot setup
 
 ```python
 import os

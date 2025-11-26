@@ -6,9 +6,13 @@ description: "Building a Discord bot to automatically notify mentors when their 
 dayNumber: 1
 ---
 
-group 3 has compiled a few classes for each of the mentors
-had an idea to make a discord bot that automatically sent a message to say it was time for someone's class
+group 3 has discovered a few classes for each of the mentors
 
+currently nothing is really being done with them and they just sit as buried discord messages
+
+i had an idea to make a discord bot that automatically sends a message to say it was time for someone's class
+
+---
 
 first go to discord and make an application for a discord app
 https://discord.com/developers/applications/

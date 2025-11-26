@@ -10,7 +10,7 @@ server day 2
 
 contining on from installing pyenv
 
-```jsx
+```bash
 ubuntu@oc03:~$ pyenv versions
 * system (set by /home/ubuntu/.pyenv/version)
   3.11.14
@@ -26,7 +26,7 @@ Usage:
 
 cd into proj directory
 
-```jsx
+```bash
 ubuntu@oc03:~/_proj/sase-sniping-discord-bot$ python bot.py
 2025-11-09 16:54:35 INFO     discord.client logging in using static token
 2025-11-09 16:54:37 INFO     discord.gateway Shard ID None has connected to Gateway (Session ID: af05165e1aa37168a342bf9725adf18f).
@@ -36,13 +36,13 @@ Logged in as sase-sniping#4376
 
 use screen
 
-```jsx
+```bash
 ubuntu@oc03:~/_proj/sase-sniping-discord-bot$ screen
 [detached from 366536.pts-0.oc03]
 ubuntu@oc03:~/_proj/sase-sniping-discord-bot$
 ```
 
-```jsx
+```bash
 ubuntu@oc03:~/_proj/sase-sniping-discord-bot$
 ubuntu@oc03:~/_proj/sase-sniping-discord-bot$
 ubuntu@oc03:~/_proj/sase-sniping-discord-bot$
@@ -59,28 +59,30 @@ Logged in as sase-sniping#4376
 
 let’s hope this actually works and sends out messages to me 😭 ill be looking out for messages throughout the day
 
+---
+
 inputted actual class schedule data of all the mentors that are in the group3 server so far
 
 log back in to oc03 server
 
-```jsx
+```bash
 ssh ubuntu@oc03
 ```
 
 get into the screen that was running `bot.py`
 
-```jsx
+```bash
 screen -rx
 ```
 
 pull the github repo changes
 
-```jsx
+```bash
 git fetch origin
 git pull
 ```
 
-! reminder to set up aliases on the server
+! reminder to set up aliases on the server (later --> [blog: set up aliases on the server](/blog/alias-11-20-2025))
 
 now it should have updated class schedule data
 

@@ -37,7 +37,11 @@ bot.run(TOKEN)
 
 ```
 
-## to actually run the bot ?!
+first draft of running bot logic 
+
+---
+
+### to actually run the bot ?!
 
 activate the python vm
 
@@ -59,16 +63,16 @@ python bot.py
 
 whoops, intermission for an error
 
-![Discord bot permissions error](/blog-images/sase-sniping-discord-bot-day-3/image.png)
-
 toggle all three of these on
+
+![Discord bot permissions error](/blog-images/sase-sniping-discord-bot-day-3/image.png)
 
 omg yayyy my bot is online
 
 ![Bot is online](/blog-images/sase-sniping-discord-bot-day-3/image%201.png)
 
 
-WOWOW
+wowow it works :D
 
 ![Bot sending messages](/blog-images/sase-sniping-discord-bot-day-3/image%202.png)
 
@@ -78,12 +82,10 @@ oop it keeps sending…?
 
 ![Bot keeps sending messages](/blog-images/sase-sniping-discord-bot-day-3/image%204.png)
 
-ill fix that later….
+ill fix that later...
 
 ### ok i can run the bot. now how do i host it somewhere so that i dont have to run it on my computer 24/7?
 
 host it on a server !
-
-oc06? 
 
 the free oracle cloud servers?

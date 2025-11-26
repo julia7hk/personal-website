@@ -6,8 +6,6 @@ description: "Fixing duplicate messages, adding start/end notifications, and res
 dayNumber: 6
 ---
 
-# sase sniping discord bot day 6 11/10/2025
-
 ok the bot is running on the oracle server from just running the [`bot.py`](http://bot.py) script 24/7 but we have some issues to fix
 
 ## 1.
@@ -20,7 +18,7 @@ the bot sends a message every minute
 
 first, a start and end message:
 
-```jsx
+```python
 # Message templates
 MESSAGE_TEMPLATE_START = "{name} has class starting in 10 minutes at {location}! If you're nearby, go say hi and snipe them!"
 MESSAGE_TEMPLATE_END = "{name}'s class ends in 10 minutes at {location}! If you're nearby, go say hi and snipe them!"
@@ -42,7 +40,7 @@ sent out at 2:30 am???
 
 double checked the class schedule data:
 
-```jsx
+```python
 "Group 4": {
         "Parin": [
             ("Mon", "07:30", "08:20", {"location": "BHEE 224"}),
@@ -55,11 +53,24 @@ double checked the class schedule data:
 
 so it’s properly entered i didnt make a mistake
 
-claude says: the code is based on the local computer’s time and timezone right now
+potential issue: the code is based on the local computer’s time and timezone right now
 
-! ! ! the oracle cloud server oc03 is based in korea right now
+! vthe oracle cloud server oc03 is based in korea right now
 
 let’s try fixing that…
+
+```python
+from zoneinfo import ZoneInfo
+```
+
+```python
+# Use Eastern Time
+eastern = ZoneInfo("America/New_York")
+now = datetime.datetime.now(eastern)
+```
+
+
+---
 
 it’s working like this so far 😋
 

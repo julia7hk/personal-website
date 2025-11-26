@@ -10,29 +10,31 @@ server day !
 
 start with checking the server hosts i have saved?
 
-```jsx
+```bash
 cat /etc/hosts
 ```
 
-used to have oc06 but not anymore, reset/remade server to be oc03
+used to have old free oracle cloud servers that werent being used, reset/remade servers
 
 fix server wiring and `/etc/hosts` file to update it
 
-in `.ssh` directory,
+---
 
-`cat config` to see contents of `config` file
+for convenience when ssh-ing into the server,
 
-```jsx
+in `.ssh` directory, see contents of `config` file
+
+```bash
+cat config
+```
+
+```bash
 IdentityFile=~/.ssh/julia7hk
 
 UseKeychain yes
 AddKeysToAgent yes
 
-Host acf2
-    User ubuntu
-    Port 1022
-
-Host oc06
+Host oc03
     User ubuntu
 
 Host data
@@ -43,13 +45,15 @@ Host borg01
     User kang616
 ```
 
+---
+
 log in to server
 
-```jsx
+```bash
 ssh ubuntu@oc03
 ```
 
-things to have [`bot.py`](http://bot.py) run:
+things to have `bot.py` run:
 
 1. screen
 2. clone github repo
@@ -57,7 +61,7 @@ things to have [`bot.py`](http://bot.py) run:
 
 copy my ssh key into server so that i can git clone my repo onto server
 
-```jsx
+```bash
 scp julia7hk ubuntu@oc03:/home/ubuntu/.ssh
 ```
 
@@ -71,11 +75,11 @@ Before installing Pyenv, update your system's package list and install necessary
 
 Code
 
-```jsx
+```bash
 sudo apt update
 ```
 
-```jsx
+```bash
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \xz-utils tk-dev libffi-dev liblzma-dev git
 ```
 
@@ -83,7 +87,7 @@ sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \libre
 
 The `pyenv-installer` script simplifies the installation process:
 
-```jsx
+```bash
 curl https://pyenv.run | bash
 ```
 
@@ -120,11 +124,3 @@ appended to the end of your `.bashrc` file 😁
 ```jsx
 pyenv install 3.11
 ```
-
-this server isnt that powerful…
-
-digital ocean server?
-
-gunn alumni had a digital ocean server going…
-
-hmm…. a thing to think about for another day
