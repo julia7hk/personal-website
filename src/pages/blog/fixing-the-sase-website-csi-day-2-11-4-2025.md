@@ -45,4 +45,4 @@ runs on [https://sasepurdue.wixsite.com/pusase](https://sasepurdue.wixsite.com/p
 
 (no longer available at that url)
 
-unpublished the wix site because we dont to mislead people
+unpublished the wix site because we dont want to mislead people
