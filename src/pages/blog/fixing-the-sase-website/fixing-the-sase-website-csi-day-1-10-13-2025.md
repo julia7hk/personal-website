@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPost.astro
 title: "Fixing the SASE Website - CSI Day 1"
 date: "2025-10-13"
 description: "Debugging SSL errors, DNS issues, and learning about WordPress hosting during fall break"

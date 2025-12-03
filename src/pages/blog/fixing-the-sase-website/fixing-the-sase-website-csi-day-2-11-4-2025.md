@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPost.astro
 title: "Fixing the SASE Website - CSI Day 2"
 date: "2025-11-04"
 description: "Recovering access to the old Wix site, exploring the inbox, and deciding to unpublish it"

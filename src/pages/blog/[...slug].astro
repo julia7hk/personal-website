@@ -1,0 +1,22 @@
+---
+export async function getStaticPaths() {
+	// Import all markdown files from blog directory and subdirectories
+	const posts = import.meta.glob('./**/*.md', { eager: true });
+
+	return Object.entries(posts).map(([path, post]: [string, any]) => {
+		// Extract just the filename without extension for the slug
+		// e.g., "./sase-sniping-discord-bot/sase-sniping-discord-bot-10-21-2025.md" -> "sase-sniping-discord-bot-10-21-2025"
+		const filename = path.split('/').pop()?.replace('.md', '') || '';
+
+		return {
+			params: { slug: filename },
+			props: { post }
+		};
+	});
+}
+
+const { post } = Astro.props;
+const { Content } = post;
+---
+
+<Content />

@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPost.astro
 title: "SASE Sniping Discord Bot - Day 7"
 date: "2025-12-01"
 description: "Fixing Discord bot permissions by using channel ID instead of channel name"

@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const allPosts = await Astro.glob('./blog/*.md');
+const allPosts = await Astro.glob('./blog/**/*.md');
 
 
 // Transform posts to extract frontmatter and create blog post data

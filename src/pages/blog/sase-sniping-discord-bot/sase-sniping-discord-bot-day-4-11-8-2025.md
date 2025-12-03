@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPost.astro
 title: "SASE Sniping Discord Bot - Day 4"
 date: "2025-11-08"
 description: "Setting up the server infrastructure and configuring pyenv on Ubuntu for the Discord bot"

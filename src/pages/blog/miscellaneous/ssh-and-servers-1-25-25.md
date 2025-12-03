@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPost.astro
 title: "SSH and Servers"
 date: "2025-01-25"
 description: "Notes on SSH configuration and server setup"
