@@ -60,6 +60,13 @@ const projectGroups = Object.entries(groupedPosts)
 // Separate projects and standalone posts
 const projects = projectGroups.filter(g => g.isProject);
 const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.posts);
+
+// Project descriptions
+const projectDescriptions: Record<string, string> = {
+	"SASE Sniping Discord Bot": "A Discord bot that automatically notifies mentees about mentors' whereabouts for sniping",
+	"Fixing the SASE Website": "Discovering legacy systems through documentation and learning Wordpress to rebuilding SASE Purdue's website",
+	"Spotify Project": "A personal Spotify dashboard to track listening stats and get better song recommendations (because I was unhappy with Spotify Wrapped)",
+};
 ---
 
 <Layout title="Blog - Julia Kang" description="Documentation of little projects or learning I do.">
@@ -82,6 +89,9 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 							<div class="project-header">
 								<h2 class="project-title">{projectName}</h2>
 							</div>
+							{projectDescriptions[projectName] && (
+								<p class="project-description">{projectDescriptions[projectName]}</p>
+							)}
 						<div class="project-posts">
 							{posts.map((post) => {
 								const [year, month, day] = post.date.split('-').map(Number);
@@ -227,6 +237,13 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 		color: #2a2a2a;
 		margin: 0;
 		letter-spacing: -0.02em;
+	}
+
+	.project-description {
+		font-size: 0.9rem;
+		color: #6a6a6a;
+		margin: 0;
+		line-height: 1.5;
 	}
 
 	.project-posts {
