@@ -225,6 +225,25 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</section>
 
+	<section class="pitch-competitions">
+		<div class="container">
+			<h2 class="section-title">Pitch Competitions</h2>
+			<div class="competitions-grid">
+				<div class="competition-card">
+					<div class="competition-header">
+						<h3 class="competition-name">Competition Name</h3>
+						<span class="competition-date">Month Year</span>
+					</div>
+					<h4 class="competition-result">Award / Placement</h4>
+					<ul class="competition-details">
+						<li>Description of the project or pitch</li>
+						<li>Key achievements or outcomes</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<section class="skills-used">
 		<div class="container">
 			<h2 class="section-title">Key Skills Demonstrated</h2>
@@ -551,6 +570,92 @@ import Layout from '../layouts/Layout.astro';
 		letter-spacing: normal;
 	}
 
+	.pitch-competitions {
+		padding: 3rem 0 4rem;
+		background: #fafaf8;
+		border-top: 1px solid #e4e4e4;
+	}
+
+	.competitions-grid {
+		display: grid;
+		gap: 2.5rem;
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.competition-card {
+		background: transparent;
+		border: 1px solid #e4e4e4;
+		border-radius: 8px;
+		padding: 2rem;
+		transition: border-color 0.2s ease;
+	}
+
+	.competition-card:hover {
+		border-color: #a9b4cd;
+	}
+
+	.competition-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 0.5rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid #e4e4e4;
+	}
+
+	.competition-name {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #2a2a2a;
+		margin: 0;
+		letter-spacing: -0.01em;
+	}
+
+	.competition-date {
+		background: transparent;
+		color: #6a6a6a;
+		padding: 0;
+		font-size: 0.85rem;
+		font-weight: 400;
+		white-space: nowrap;
+	}
+
+	.competition-result {
+		color: #4a4a4a;
+		font-size: 0.95rem;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+		font-weight: 500;
+	}
+
+	.competition-details {
+		margin-bottom: 0;
+		padding-left: 0;
+	}
+
+	.competition-details li {
+		margin-bottom: 0.75rem;
+		line-height: 1.7;
+		color: #4a4a4a;
+		list-style: none;
+		position: relative;
+		padding-left: 1.2rem;
+		font-size: 0.9rem;
+	}
+
+	.competition-details li:last-child {
+		margin-bottom: 0;
+	}
+
+	.competition-details li::before {
+		content: '—';
+		position: absolute;
+		left: 0;
+		color: #2a2a2a;
+		font-weight: normal;
+	}
+
 	.skills-used {
 		padding: 3rem 0 4rem;
 		background: #fafaf8;
@@ -624,8 +729,13 @@ import Layout from '../layouts/Layout.astro';
 			gap: 0.5rem;
 		}
 
-		.timeline-content, .leadership-card, .skill-group {
+		.timeline-content, .leadership-card, .skill-group, .competition-card {
 			padding: 1.25rem;
+		}
+
+		.competition-header {
+			flex-direction: column;
+			gap: 0.5rem;
 		}
 
 		.skills-showcase {
