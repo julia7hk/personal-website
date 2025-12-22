@@ -6,17 +6,20 @@ description: "Debugging SSL errors, DNS issues, and learning about WordPress hos
 dayNumber: 1
 ---
 
-Fall break, accidentally fell asleep too early and now im awake doing miscellaneous shenanigans like the sase website
+Fall break, accidentally fell asleep too early and now im awake 
 
-leo originally told me to let him know during winter break... but i figured i could do it now so why not !
+am currently doing miscellaneous shenanigans like the sase website
+
+leo originally told me to let him know during winter break... 
+
+but i figured i could do it now so why not !
+
+---
 
 the [`sasepurdue.com`](http://sasepurdue.com) domain currently gives 
 
-```
-This site can't provide a secure connection
-sasepurdue.com sent an invalid response.
-ERR_SSL_PROTOCOL_ERROR
-```
+![SSL error screenshot](/blog-images/fixing-the-sase-website-csi-day-1/image.png)
+
 
 # the process
 
@@ -72,6 +75,9 @@ clears DNS things on your computer
 problem resolved ! 😭
 
 now we’re faced with default hostgator website with absolutely nothing on it
+
+![Default HostGator website](/blog-images/fixing-the-sase-website-csi-day-1/image%201.png)
+
 
 
 
