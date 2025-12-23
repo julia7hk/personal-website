@@ -9,13 +9,10 @@ const blogPosts = allPosts.map(post => {
 	// extract filename for slug
 	const slug = post.file.split('/').pop()?.replace('.md', '') || '';
 
-	// Extract project name from title (everything before " - Day" or just the title)
+	// extract project name from title
 	const title = post.frontmatter.title;
-	const projectMatch = title.match(/^(.+?)(?:\s*-\s*(?:Day|CSI Day|Build Day)\s*\d+)?$/);
-	const projectName = projectMatch ? projectMatch[1].trim() : title;
+	const projectName = title.includes(' - ') ? title.split(' - ')[0].trim() : title;
 
-
-	const dayNumber = post.frontmatter.dayNumber || null;
 
 	return {
 		url: `/blog/${slug}`,
@@ -24,7 +21,7 @@ const blogPosts = allPosts.map(post => {
 		date: post.frontmatter.date,
 		tags: post.frontmatter.tags || [],
 		projectName: projectName,
-		dayNumber: dayNumber
+		dayNumber: post.frontmatter.dayNumber || null
 	};
 }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -64,7 +61,7 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 // Project descriptions
 const projectDescriptions: Record<string, string> = {
 	"SASE Sniping Discord Bot": "A Discord bot that automatically notifies mentees about mentors' whereabouts for sniping",
-	"Fixing the SASE Website": "Discovering legacy systems through documentation and learning Wordpress to rebuilding SASE Purdue's website",
+	"Fixing the SASE Website": "Rebuilding SASE Purdue's website (doing detective work and learning Wordpress)",
 	"Spotify Project": "A personal Spotify dashboard to track listening stats and get better song recommendations (because I was unhappy with Spotify Wrapped)",
 };
 ---
