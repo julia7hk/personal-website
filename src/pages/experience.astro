@@ -231,13 +231,14 @@ import Layout from '../layouts/Layout.astro';
 			<div class="competitions-grid">
 				<div class="competition-card">
 					<div class="competition-header">
-						<h3 class="competition-name">Competition Name</h3>
-						<span class="competition-date">Month Year</span>
+						<img src="/diamond_challenge_logo.jpeg" alt="Diamond Challenge" class="competition-logo" />
+						<h3 class="competition-name">Diamond Challenge</h3>
+						<span class="competition-date">2021</span>
 					</div>
-					<h4 class="competition-result">Award / Placement</h4>
+					<h4 class="competition-result">Participant</h4>
 					<ul class="competition-details">
-						<li>Description of the project or pitch</li>
-						<li>Key achievements or outcomes</li>
+						<li>FalconUp Investment</li>
+						<li>Selected to move onto Live Pitching round</li>
 					</ul>
 				</div>
 			</div>
@@ -595,16 +596,25 @@ import Layout from '../layouts/Layout.astro';
 		border-color: #a9b4cd;
 	}
 
+	.competition-logo {
+		width: 40px;
+		height: 40px;
+		object-fit: contain;
+		border-radius: 4px;
+		flex-shrink: 0;
+	}
+
 	.competition-header {
 		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
+		align-items: center;
+		gap: 1rem;
 		margin-bottom: 0.5rem;
 		padding-bottom: 1rem;
 		border-bottom: 1px solid #e4e4e4;
 	}
 
 	.competition-name {
+		flex: 1;
 		font-size: 1.1rem;
 		font-weight: 600;
 		color: #2a2a2a;
