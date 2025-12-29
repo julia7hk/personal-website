@@ -83,13 +83,19 @@ const projectDescriptions: Record<string, string> = {
 					const slug = projectName.toLowerCase().replace(/\s+/g, '-');
 					return (
 						<div class="project-group" id={slug}>
-							<div class="project-header">
-								<h2 class="project-title">{projectName}</h2>
-							</div>
+							<button class="project-header" aria-expanded="true" aria-controls={`${slug}-posts`}>
+								<div class="project-header-content">
+									<h2 class="project-title">{projectName}</h2>
+									<span class="post-count">{posts.length} {posts.length === 1 ? 'entry' : 'entries'}</span>
+								</div>
+								<svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</button>
 							{projectDescriptions[projectName] && (
 								<p class="project-description">{projectDescriptions[projectName]}</p>
 							)}
-						<div class="project-posts">
+						<div class="project-posts" id={`${slug}-posts`}>
 							{posts.map((post) => {
 								const [year, month, day] = post.date.split('-').map(Number);
 								const localDate = new Date(year, month - 1, day);
@@ -222,10 +228,60 @@ const projectDescriptions: Record<string, string> = {
 
 	.project-header {
 		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		padding-bottom: 0.75rem;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 0.75rem 0;
+		border: none;
 		border-bottom: 2px solid #2a2a2a;
+		background: transparent;
+		cursor: pointer;
+		text-align: left;
+		font-family: inherit;
+	}
+
+	.project-header:hover {
+		background: rgba(0, 0, 0, 0.02);
+	}
+
+	.project-header-content {
+		display: flex;
+		align-items: baseline;
+		gap: 0.75rem;
+	}
+
+	.post-count {
+		font-size: 0.85rem;
+		color: #6a6a6a;
+		font-weight: 400;
+	}
+
+	.chevron {
+		color: #6a6a6a;
+		transition: transform 0.35s ease;
+		flex-shrink: 0;
+	}
+
+	.project-header[aria-expanded="false"] .chevron {
+		transform: rotate(-90deg);
+	}
+
+	.project-posts {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		overflow: hidden;
+		transition: max-height 0.4s ease, opacity 0.3s ease;
+	}
+
+	.project-posts.collapsed {
+		max-height: 0 !important;
+		opacity: 0;
+		margin: 0;
+	}
+
+	.project-description.collapsed {
+		display: none;
 	}
 
 	.project-title {
@@ -241,12 +297,6 @@ const projectDescriptions: Record<string, string> = {
 		color: #6a6a6a;
 		margin: 0;
 		line-height: 1.5;
-	}
-
-	.project-posts {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
 	}
 
 	.blog-card {
@@ -378,3 +428,25 @@ const projectDescriptions: Record<string, string> = {
 		}
 	}
 </style>
+
+<script>
+	document.querySelectorAll('.project-header').forEach(button => {
+		const postsId = button.getAttribute('aria-controls');
+		const postsEl = postsId ? document.getElementById(postsId) : null;
+		const descEl = button.nextElementSibling?.classList.contains('project-description')
+			? button.nextElementSibling
+			: null;
+
+		button.addEventListener('click', () => {
+			const isExpanded = button.getAttribute('aria-expanded') === 'true';
+			button.setAttribute('aria-expanded', String(!isExpanded));
+
+			if (postsEl) {
+				postsEl.classList.toggle('collapsed', isExpanded);
+			}
+			if (descEl) {
+				descEl.classList.toggle('collapsed', isExpanded);
+			}
+		});
+	});
+</script>
