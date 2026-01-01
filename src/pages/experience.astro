@@ -392,10 +392,34 @@ import Layout from '../layouts/Layout.astro';
 		background: #a9b4cd;
 	}
 
+	.timeline-container::after {
+		content: '';
+		position: absolute;
+		right: 10px;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		background: #a9b4cd;
+	}
+
 	.timeline-item {
 		position: relative;
 		margin-bottom: 2.5rem;
 		padding-left: 40px;
+		padding-right: 40px;
+	}
+
+	.timeline-item::after {
+		content: '';
+		position: absolute;
+		right: 5px;
+		top: 8px;
+		width: 8px;
+		height: 8px;
+		background: #5372aa;
+		border: 2px solid #fafaf8;
+		border-radius: 50%;
+		z-index: 1;
 	}
 
 	.timeline-marker {
@@ -407,6 +431,7 @@ import Layout from '../layouts/Layout.astro';
 		background: #5372aa;
 		border: 2px solid #fafaf8;
 		border-radius: 50%;
+		z-index: 1;
 	}
 
 	.timeline-content {
@@ -689,12 +714,21 @@ import Layout from '../layouts/Layout.astro';
 			left: 8px;
 		}
 
+		.timeline-container::after {
+			right: 8px;
+		}
+
 		.timeline-marker {
 			left: 3px;
 		}
 
 		.timeline-item {
 			padding-left: 35px;
+			padding-right: 35px;
+		}
+
+		.timeline-item::after {
+			right: 2px;
 		}
 
 		.timeline-header {
