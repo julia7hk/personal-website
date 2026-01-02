@@ -475,11 +475,18 @@ import Layout from '../layouts/Layout.astro';
 		border: 1px solid #e4e4e4;
 		border-radius: 8px;
 		padding: 1.5rem;
-		transition: border-color 0.2s ease;
+		transition: all 0.3s ease;
+		position: relative;
 	}
 
-	.timeline-content:hover {
+	.timeline-item.technical .timeline-content:hover {
 		border-color: #a9b4cd;
+		box-shadow: -10px 4px 16px -3px rgba(83, 114, 170, 0.3);
+	}
+
+	.timeline-item.leadership .timeline-content:hover {
+		border-color: #a9b4cd;
+		box-shadow: 10px 4px 16px -3px rgba(83, 114, 170, 0.3);
 	}
 
 	.timeline-header {
