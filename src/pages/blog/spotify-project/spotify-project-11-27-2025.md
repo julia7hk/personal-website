@@ -43,7 +43,7 @@ started coding
 
 1. create new directory and [`main.py`](http://main.py) file
 
-1. creating a python3 virtual environment
+2. creating a python3 virtual environment
 
 ```jsx
 python3 -m venv venv
@@ -53,14 +53,14 @@ python3 -m venv venv
 
 this creates a `/venv` directory
 
-1. create `requirments.txt` file
+3. create `requirments.txt` file
 
 ```jsx
 Flask==3.0.2
 spotipy==2.23.0
 ```
 
-1. install dependencies
+4. install dependencies
 
 activate virtual environment
 
@@ -68,7 +68,7 @@ activate virtual environment
 source venv/bin/activate
 ```
 
-^ same command ; used it for the sase discord bot project too
+^ same command ; used it for the [sase discord bot project](/blog/sase-sniping-discord-bot-day-2-10-23-2025) too
 
 now terminal looks like
 
@@ -83,6 +83,8 @@ now `pip install`  the dependencies within the virtual environment
 ```jsx
 pip install -r requirements.txt
 ```
+
+
 
 ## actual logic
 
@@ -109,6 +111,6 @@ it’s running ! but theres nothing there yet
 
 ![Flask app running](/blog-images/spotify-project-11-27-2025/image.png)
 
-1. set up flask session
+2. set up flask session
 
 but maybe next time, its time to sleep 😴

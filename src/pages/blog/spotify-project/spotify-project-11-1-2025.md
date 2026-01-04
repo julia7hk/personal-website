@@ -14,6 +14,8 @@ but i feel like i can do work rn
 
 so but like here i am
 
+---
+
 i started this project over the summer
 
 the original idea was i wanted to know my listening stats and also get better recommendations on new songs
@@ -28,12 +30,16 @@ but i didnt get to do much meaningful work with it then
 
 so ill try starting it back up now !
 
+---
+
 i already have a next.js project set up
 
 a spotify app has already been created. i have a 
 
 - `CLIENT_ID` 
 - `CLIENT_SECRET` 
+
+---
 
 ### actual new stuff now ! yay
 
@@ -45,6 +51,6 @@ SPOTIFY_CLIENT_SECRET=your_client_secret_here
 SPOTIFY_REDIRECT_URI=http://localhost:3000/api/callback
 ```
 
-what’s a redirect url for…?
+Q: what’s a redirect uri for…?
 
-When you click “Connect with Spotify,” you’re actually being redirected to `SPOTIFY_REDIRECT_URI`
+A: When you click “Connect with Spotify,” you’re actually being redirected to `SPOTIFY_REDIRECT_URI`
