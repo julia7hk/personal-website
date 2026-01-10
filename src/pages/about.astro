@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import purdueLogo from '../assets/purdue-logo.svg';
 ---
 
 <Layout title="About - Julia Kang" description="Learn about Julia Kang's education at Purdue University and technical skills in computer science and artificial intelligence.">
@@ -16,6 +17,9 @@ import Layout from '../layouts/Layout.astro';
 		<div class="container">
 			<h2 class="section-title">Education</h2>
 			<div class="education-card">
+				<div class="university-logo">
+					<img src={purdueLogo.src} alt="Purdue University logo" />
+				</div>
 				<div class="education-header">
 					<div class="education-main">
 						<h3 class="university">Purdue University</h3>
@@ -23,16 +27,16 @@ import Layout from '../layouts/Layout.astro';
 						<p class="duration">August 2024 – May 2027</p>
 					</div>
 					<div class="gpa">
-						<span class="gpa-number">3.89</span>
+						<span class="gpa-number">3.84</span>
 						<span class="gpa-label">GPA</span>
 					</div>
 				</div>
 				<div class="degrees">
 					<div class="degree">
-						<h4>Bachelor of Science in Computer Science</h4>
+						<h4>B.S. in Computer Science</h4>
 					</div>
 					<div class="degree">
-						<h4>Bachelor of Science in Artificial Intelligence</h4>
+						<h4>B.S. in Artificial Intelligence</h4>
 					</div>
 					<div class="degree">
 						<h4>Minor in Mathematics</h4>
@@ -349,6 +353,7 @@ import Layout from '../layouts/Layout.astro';
 		padding: 2rem;
 		max-width: 700px;
 		margin: 0 auto;
+		position: relative;
 	}
 
 	.education-header {
@@ -358,6 +363,19 @@ import Layout from '../layouts/Layout.astro';
 		margin-bottom: 2rem;
 		padding-bottom: 2rem;
 		border-bottom: 1px solid #e4e4e4;
+		gap: 1.25rem;
+	}
+
+	.university-logo {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		opacity: 0.15;
+	}
+
+	.university-logo img {
+		width: 80px;
+		height: 80px;
 	}
 
 	.university {
