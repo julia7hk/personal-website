@@ -130,7 +130,7 @@ Shape: **VM.Standard.A1.Flex**
 
 ---
 
-enable protection cuz why not 
+enable shielded instance cuz why not. confidential computing is not the thing we need and we dont need to touch advanced settings
 
 ---
 
