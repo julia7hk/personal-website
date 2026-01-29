@@ -749,4 +749,70 @@ import purdueLogo from '../assets/purdue-logo.svg';
 			font-size: 0.8rem;
 		}
 	}
+
+	/* Animations */
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes slideUp {
+		from {
+			opacity: 0;
+			transform: translateY(40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.animate-fade-in {
+		opacity: 0;
+		animation: fadeIn 0.25s ease-out forwards;
+	}
+
+	.animate-slide-up {
+		opacity: 0;
+		animation: slideUp 0.3s ease-out forwards;
+		animation-delay: 0.3s;
+	}
+
+	.delay-1 {
+		animation-delay: 0.1s;
+	}
+
+	.delay-2 {
+		animation-delay: 0.2s;
+	}
+
+	.delay-3 {
+		animation-delay: 0.3s;
+	}
+
+	.delay-4 {
+		animation-delay: 0.4s;
+	}
 </style>
+
+<script>
+	const params = new URLSearchParams(window.location.search);
+	if (params.get('animate') === 'true') {
+		const title = document.querySelector('.page-title');
+		const subtitle = document.querySelector('.page-subtitle');
+		const sections = document.querySelectorAll('.education, .skills, .interests, .fun-links');
+
+		title?.classList.add('animate-fade-in');
+		subtitle?.classList.add('animate-fade-in', 'delay-1');
+		sections.forEach(section => section.classList.add('animate-slide-up'));
+
+		// Clean up the URL
+		history.replaceState(null, '', '/about');
+	}
+</script>
