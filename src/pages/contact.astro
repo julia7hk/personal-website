@@ -54,7 +54,7 @@ import Layout from '../layouts/Layout.astro';
 							<div class="contact-details">
 								<h3>GitHub</h3>
 								<a href="https://github.com/julia7hk" target="_blank" class="contact-link">github.com/julia7hk</a>
-								<p>Explore my code and open-source contributions</p>
+								<p>Explore my code and open-source projects</p>
 							</div>
 						</div>
 
@@ -67,7 +67,7 @@ import Layout from '../layouts/Layout.astro';
 							<div class="contact-details">
 								<h3>Location</h3>
 								<span class="contact-text">Palo Alto, CA or West Lafayette, IN</span>
-								<p>Available for local opportunities and also relocation</p>
+								<p>Available for relocation and local opportunities</p>
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,15 @@ import Layout from '../layouts/Layout.astro';
 							<div class="status-indicator active"></div>
 							<div class="status-info">
 								<h4>Open to summer 2026 internships and co-ops</h4>
-								<p>Actively seeking opportunities in software engineering, AI/ML, or research positions. Also available for collaborative projects and freelance work.</p>
+								<p>Actively seeking opportunities in:</p>
+								<ul class="opportunity-list">
+									<li>Software Engineering/Development</li>
+									<li>AI/ML</li>
+									<li>Data Analytics</li>
+									<li>Project/Product Management</li>
+									<li>Research</li>
+								</ul>
+								<p>Also available for collaborative projects and freelance work.</p>
 							</div>
 						</div>
 					</div>
@@ -250,6 +258,18 @@ import Layout from '../layouts/Layout.astro';
 		line-height: 1.7;
 		margin: 0;
 		font-size: 0.9rem;
+	}
+
+	.opportunity-list {
+		margin: 0.5rem 0;
+		padding-left: 1.2rem;
+		color: #6a6a6a;
+		font-size: 0.9rem;
+		line-height: 1.7;
+	}
+
+	.opportunity-list li {
+		margin-bottom: 0.2rem;
 	}
 
 	.interests-connect {
