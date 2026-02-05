@@ -9,13 +9,19 @@ import Layout from '../layouts/Layout.astro';
 			<p class="page-subtitle">
 				A collection of personal and collaborative projects I have worked on over the years
 			</p>
+			<div class="filter-container">
+				<span class="filter-label">Filter by:</span>
+				<button class="filter-btn active" data-filter="all">All</button>
+				<button class="filter-btn" data-filter="web-app">Web App</button>
+				<button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+			</div>
 		</div>
 	</section>
 
 	<section class="projects">
 		<div class="container">
 			<div class="projects-grid">
-				<div class="project-card">
+				<div class="project-card" data-category="web-app machine-learning">
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">Music Dashboard</h3>
@@ -51,7 +57,7 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 				</div>
 
-				<div class="project-card">
+				<div class="project-card" data-category="">
 					<div class="project-header">
 						<h3 class="project-title">SASE Sniping Discord Bot</h3>
 						<div class="project-links">
@@ -81,7 +87,7 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 				</div>
 
-				<div class="project-card featured">
+				<div class="project-card featured" data-category="">
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">BucketList Community App</h3>
@@ -112,7 +118,7 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 				</div>
 
-				<div class="project-card">
+				<div class="project-card" data-category="web-app">
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">Gunn Alumni Network</h3>
@@ -155,7 +161,7 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 				</div>
 
-				<div class="project-card">
+				<div class="project-card" data-category="web-app machine-learning">
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">Peace of Mind</h3>
@@ -203,7 +209,7 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 				</div>
 
-				<div class="project-card">
+				<div class="project-card" data-category="web-app machine-learning">
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">FalconUp Investment</h3>
@@ -314,9 +320,51 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
 	.projects-hero {
-		padding: 3rem 0 4rem;
+		padding: 3rem 0 2rem;
 		background: #fafaf8;
 		border-bottom: 1px solid #e4e4e4;
+	}
+
+	.filter-container {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.filter-label {
+		color: #6a6a6a;
+		font-size: 0.9rem;
+		font-weight: 400;
+	}
+
+	.filter-btn {
+		background: transparent;
+		color: #6a6a6a;
+		border: 1px solid #d4d4d4;
+		padding: 0.4rem 0.9rem;
+		border-radius: 4px;
+		font-size: 0.85rem;
+		font-weight: 400;
+		font-family: inherit;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.filter-btn:hover {
+		border-color: #5372aa;
+		color: #5372aa;
+	}
+
+	.filter-btn.active {
+		background: #5372aa;
+		border-color: #5372aa;
+		color: #fafaf8;
+	}
+
+	.project-card.hidden {
+		display: none;
 	}
 
 	.container {
@@ -677,3 +725,31 @@ import Layout from '../layouts/Layout.astro';
 		}
 	}
 </style>
+
+<script>
+	const filterButtons = document.querySelectorAll('.filter-btn');
+	const projectCards = document.querySelectorAll('.project-card');
+
+	filterButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			// Update active state
+			filterButtons.forEach(btn => btn.classList.remove('active'));
+			button.classList.add('active');
+
+			const filter = button.getAttribute('data-filter');
+
+			projectCards.forEach(card => {
+				if (filter === 'all') {
+					card.classList.remove('hidden');
+				} else {
+					const categories = card.getAttribute('data-category') || '';
+					if (categories.includes(filter)) {
+						card.classList.remove('hidden');
+					} else {
+						card.classList.add('hidden');
+					}
+				}
+			});
+		});
+	});
+</script>
