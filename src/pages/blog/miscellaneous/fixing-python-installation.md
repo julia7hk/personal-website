@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Fixing Python Installation"
 date: "2026-01-24"
 description: "Fixing pyenv and certifi issues after Python got messed up"

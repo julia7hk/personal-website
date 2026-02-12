@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Spotify Project - Day 8"
 date: "2026-02-10"
 description: "Fixing redirect URI issues and new UI work"

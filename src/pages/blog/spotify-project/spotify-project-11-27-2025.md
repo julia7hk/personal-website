@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Spotify Project - Day 3"
 date: "2025-11-27"
 description: "Setting up Flask API with spotipy for Spotify authentication using authorization code flow"

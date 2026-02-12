@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Spotify Project - Day 6"
 date: "2026-01-11"
 description: "Connecting Flask API to Next.js frontend and fixing port issues"

@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "SASE Sniping Discord Bot - Day 6"
 date: "2025-11-10"
 description: "Fixing duplicate messages, adding start/end notifications, and resolving timezone issues on Oracle Cloud server"

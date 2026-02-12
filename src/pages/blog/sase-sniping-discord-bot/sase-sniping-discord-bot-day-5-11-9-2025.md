@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "SASE Sniping Discord Bot - Day 5"
 date: "2025-11-09"
 description: "Running the bot with pyenv and screen, updating class schedule data, and testing notifications"

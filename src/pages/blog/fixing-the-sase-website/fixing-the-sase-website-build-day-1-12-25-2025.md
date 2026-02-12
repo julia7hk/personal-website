@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Fixing the SASE Website - Build Day 1"
 date: "2025-12-25"
 description: "Installing WordPress on HostGator and setting up the new SASE Purdue website"

@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "git reflog - Fixing Rebase Issues"
 date: "2025-11-07"
 description: "How to use git reflog to recover from merge conflicts and rebase mishaps"

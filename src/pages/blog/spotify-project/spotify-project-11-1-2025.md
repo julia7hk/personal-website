@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Spotify Project - Day 1"
 date: "2025-11-01"
 description: "Starting up my Spotify dashboard project to track listening stats and get better recommendations"

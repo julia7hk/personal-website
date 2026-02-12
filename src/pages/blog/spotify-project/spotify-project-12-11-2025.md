@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Spotify Project - Day 4"
 date: "2025-12-11"
 description: "Continuing Flask setup + redirect URI updates"

@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Fixing the SASE Website - Build Day 2"
 date: "2025-12-26"
 description: "Troubleshooting WordPress installation issues on HostGator - PHP execution and DNS problems"

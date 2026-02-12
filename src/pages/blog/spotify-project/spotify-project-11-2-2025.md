@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Spotify Project - Day 2"
 date: "2025-11-02"
 description: "Figuring out Spotify API authentication with spotipy and troubleshooting redirect URLs"

@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Spotify Project - Day 7"
 date: "2026-01-13"
 description: "Expanding API endpoints for top artists, tracks, recently played, and listening profile"

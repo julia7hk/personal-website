@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Fixing the SASE Website - New Site"
 date: "2025-12-20"
 description: "Exploring HostGator, SSL certificates, and considering switching to WordPress"

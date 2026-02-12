@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "SQLite Notes"
 date: "2026-01-28"
 description: "Quick reference for SQLite commands in the terminal"

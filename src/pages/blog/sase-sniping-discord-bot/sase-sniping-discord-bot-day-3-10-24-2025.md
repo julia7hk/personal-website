@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "SASE Sniping Discord Bot - Day 3"
 date: "2025-10-24"
 description: "Implementing the bot logic, running it locally, and exploring hosting options"

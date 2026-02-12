@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Fixing the SASE Website - Build Day 3"
 date: "2025-12-27"
 description: "it works !! wordpress in action"

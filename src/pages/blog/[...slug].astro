@@ -1,22 +1,83 @@
 ---
+import BlogPost from '../../layouts/BlogPost.astro';
+
 export async function getStaticPaths() {
 	// Import all markdown files from blog directory and subdirectories
 	const posts = import.meta.glob('./**/*.md', { eager: true });
 
+	// Group posts by their project folder
+	const postsByProject: Record<string, Array<{ path: string; post: any; filename: string }>> = {};
+
+	Object.entries(posts).forEach(([path, post]: [string, any]) => {
+		const parts = path.split('/');
+		// Get project folder name (e.g., "spotify-project", "sase-sniping-discord-bot")
+		// Path format: ./folder/file.md -> parts = ['.', 'folder', 'file.md']
+		const projectFolder = parts.length >= 3 ? parts[1] : 'miscellaneous';
+		const filename = parts[parts.length - 1]?.replace('.md', '') || '';
+
+		if (!postsByProject[projectFolder]) {
+			postsByProject[projectFolder] = [];
+		}
+		postsByProject[projectFolder].push({ path, post, filename });
+	});
+
+	// Sort posts within each project by dayNumber or date
+	Object.values(postsByProject).forEach(projectPosts => {
+		projectPosts.sort((a, b) => {
+			const dayA = a.post.frontmatter?.dayNumber ?? Infinity;
+			const dayB = b.post.frontmatter?.dayNumber ?? Infinity;
+			if (dayA !== Infinity && dayB !== Infinity) {
+				return dayA - dayB;
+			}
+			// Fallback to date sorting
+			const dateA = new Date(a.post.frontmatter?.date || '1970-01-01').getTime();
+			const dateB = new Date(b.post.frontmatter?.date || '1970-01-01').getTime();
+			return dateA - dateB;
+		});
+	});
+
 	return Object.entries(posts).map(([path, post]: [string, any]) => {
-		// Extract just the filename without extension for the slug
-		// e.g., "./sase-sniping-discord-bot/sase-sniping-discord-bot-10-21-2025.md" -> "sase-sniping-discord-bot-10-21-2025"
-		const filename = path.split('/').pop()?.replace('.md', '') || '';
+		const parts = path.split('/');
+		const projectFolder = parts.length >= 3 ? parts[1] : 'miscellaneous';
+		const filename = parts[parts.length - 1]?.replace('.md', '') || '';
+
+		// Find prev/next posts in the same series
+		const projectPosts = postsByProject[projectFolder] || [];
+		const currentIndex = projectPosts.findIndex(p => p.filename === filename);
+
+		let prevPost = null;
+		let nextPost = null;
+
+		if (projectPosts.length > 1 && currentIndex !== -1) {
+			if (currentIndex > 0) {
+				const prev = projectPosts[currentIndex - 1];
+				prevPost = {
+					slug: prev.filename,
+					title: prev.post.frontmatter?.title || prev.filename,
+					dayNumber: prev.post.frontmatter?.dayNumber
+				};
+			}
+			if (currentIndex < projectPosts.length - 1) {
+				const next = projectPosts[currentIndex + 1];
+				nextPost = {
+					slug: next.filename,
+					title: next.post.frontmatter?.title || next.filename,
+					dayNumber: next.post.frontmatter?.dayNumber
+				};
+			}
+		}
 
 		return {
 			params: { slug: filename },
-			props: { post }
+			props: { post, prevPost, nextPost }
 		};
 	});
 }
 
-const { post } = Astro.props;
-const { Content } = post;
+const { post, prevPost, nextPost } = Astro.props;
+const { Content, frontmatter } = post;
 ---
 
-<Content />
+<BlogPost frontmatter={{ ...frontmatter, prevPost, nextPost }}>
+	<Content />
+</BlogPost>

@@ -3,7 +3,8 @@ import { Image } from 'astro:assets';
 import profileImage from '../assets/profile.JPG';
 
 const { frontmatter } = Astro.props;
-const { title, date, description } = frontmatter;
+const { title, date, description, prevPost, nextPost } = frontmatter;
+const hasSeries = prevPost || nextPost;
 ---
 
 <!doctype html>
@@ -70,6 +71,18 @@ const { title, date, description } = frontmatter;
 		<main>
 			<article class="blog-post">
 				<header class="post-header">
+					{prevPost && (
+						<a href={`/blog/${prevPost.slug}`} class="series-link prev">
+							<span class="series-arrow">&larr;</span>
+							<span class="series-label">Previous</span>
+						</a>
+					)}
+					{nextPost && (
+						<a href={`/blog/${nextPost.slug}`} class="series-link next">
+							<span class="series-label">Next</span>
+							<span class="series-arrow">&rarr;</span>
+						</a>
+					)}
 					<div class="post-meta">
 						<time datetime={date}>{date}</time>
 					</div>
@@ -201,6 +214,43 @@ const { title, date, description } = frontmatter;
 		margin-bottom: 2.5rem;
 		padding-bottom: 2rem;
 		border-bottom: 1px solid #e4e4e4;
+		position: relative;
+	}
+
+	.series-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: #6a6a6a;
+		text-decoration: none;
+		font-size: 0.85rem;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid #d4d4d4;
+		transition: all 0.2s ease;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.series-link.prev {
+		right: calc(100% + 2rem);
+	}
+
+	.series-link.next {
+		left: calc(100% + 2rem);
+	}
+
+	.series-link:hover {
+		color: #2a2a2a;
+		border-color: #2a2a2a;
+	}
+
+	.series-arrow {
+		font-size: 1rem;
+	}
+
+	.series-label {
+		font-weight: 500;
 	}
 
 	.post-meta {
@@ -431,6 +481,10 @@ const { title, date, description } = frontmatter;
 
 		.blog-post {
 			padding: 0 1rem;
+		}
+
+		.series-link {
+			display: none;
 		}
 
 		.post-title {

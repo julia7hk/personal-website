@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Fixing the SASE Website - Oracle Day 2"
 date: "2026-01-26"
 description: "Continuing the Oracle Cloud VM setup - configuring storage settings and boot volume options"

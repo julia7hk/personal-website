@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "SASE Sniping Discord Bot"
 date: "2025-10-21"
 description: "Building a Discord bot to automatically notify mentors when their class time arrives"

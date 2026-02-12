@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "Spotify Project - finish draft"
 date: "2026-01-04"
 description: "Finishing the Flask setup and getting playlists working"
