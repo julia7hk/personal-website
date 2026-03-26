@@ -12,6 +12,16 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</section>
 
+	<section class="filter-section">
+		<div class="container">
+			<div class="filter-buttons">
+				<button class="filter-btn active" data-filter="all">All</button>
+				<button class="filter-btn" data-filter="technical">Technical</button>
+				<button class="filter-btn" data-filter="leadership">Leadership</button>
+			</div>
+		</div>
+	</section>
+
 	<section class="timeline">
 		<div class="container">
 			<div class="timeline-container">
@@ -440,7 +450,70 @@ import Layout from '../layouts/Layout.astro';
 	</section>
 </Layout>
 
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const filterBtns = document.querySelectorAll('.filter-btn');
+		const timelineItems = document.querySelectorAll('.timeline-item');
+
+		filterBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				const filter = btn.dataset.filter;
+
+				// Update active button
+				filterBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+
+				// Filter items
+				timelineItems.forEach(item => {
+					if (filter === 'all') {
+						item.style.display = '';
+					} else {
+						if (item.classList.contains(filter)) {
+							item.style.display = '';
+						} else {
+							item.style.display = 'none';
+						}
+					}
+				});
+			});
+		});
+	});
+</script>
+
 <style>
+	.filter-section {
+		padding: 1.5rem 0;
+		background: #fafaf8;
+	}
+
+	.filter-buttons {
+		display: flex;
+		gap: 0.75rem;
+		justify-content: center;
+	}
+
+	.filter-btn {
+		background: transparent;
+		color: #7a7a7a;
+		padding: 0.5rem 1rem;
+		border: 1px solid #7a7a7a;
+		border-radius: 4px;
+		font-size: 0.9rem;
+		font-weight: 500;
+		font-family: inherit;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.filter-btn:hover {
+		background: #f0f0f0;
+	}
+
+	.filter-btn.active {
+		background: #7a7a7a;
+		color: #fff;
+	}
+
 	.experience-hero {
 		padding: 3rem 0 4rem;
 		background: #fafaf8;
@@ -490,17 +563,18 @@ import Layout from '../layouts/Layout.astro';
 	.timeline-header-right {
 		font-size: 1.15rem;
 		font-weight: 600;
-		color: #5372aa;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 	}
 
 	.timeline-header-left {
 		margin-left: -28px;
+		color: #5372aa;
 	}
 
 	.timeline-header-right {
 		margin-right: -32px;
+		color: #EDA8A8;
 	}
 
 	.timeline-container::before {
@@ -520,7 +594,7 @@ import Layout from '../layouts/Layout.astro';
 		top: 2rem;
 		bottom: 0;
 		width: 2px;
-		background: #a9b4cd;
+		background: #EDA8A8;
 	}
 
 	.timeline-item {
@@ -537,7 +611,7 @@ import Layout from '../layouts/Layout.astro';
 		top: 8px;
 		width: 10px;
 		height: 10px;
-		background: #5372aa;
+		background: #EDA8A8;
 		border: 2px solid #fafaf8;
 		border-radius: 50%;
 		z-index: 1;
@@ -578,8 +652,8 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.timeline-item.leadership .timeline-content:hover {
-		border-color: #a9b4cd;
-		box-shadow: 10px 4px 16px -3px rgba(83, 114, 170, 0.3);
+		border-color: #EDA8A8;
+		box-shadow: 10px 4px 16px -3px rgba(237, 168, 168, 0.5);
 	}
 
 	.timeline-header {
