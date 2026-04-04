@@ -26,11 +26,13 @@ import Layout from '../layouts/Layout.astro';
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">Mead Johnson PeptideX</h3>
-							<span class="project-category">Web App</span>
 						</div>
 						<div class="project-links">
 							<span class="project-status">Corporate Partners</span>
 						</div>
+					</div>
+					<div class="project-categories-row">
+						<span class="project-category">Web App</span>
 					</div>
 					<div class="project-duration">Aug 2025 – Present</div>
 					<p class="project-description">
@@ -54,12 +56,42 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 				</div>
 
+				<div class="project-card featured" data-category="machine-learning">
+					<div class="project-header">
+						<div class="project-title-row">
+							<h3 class="project-title">Predictive Modeling of Aortic Root Dilation</h3>
+						</div>
+						<div class="project-links">
+							<span class="project-status">Research</span>
+						</div>
+					</div>
+					<div class="project-categories-row">
+						<span class="project-category">Machine Learning</span>
+					</div>
+					<div class="project-duration">Nov 2025 – Present</div>
+					<p class="project-description">
+						Undergraduate research at the Cardiovascular Imaging Research Lab (CVIRL) on predictive modeling of aortic root dilation in pediatric patients with cardiovascular diseases. Selected for the Purdue Summer Undergraduate Research Fellowship (SURF) program, Summer 2025.
+					</p>
+					<div class="project-highlights">
+						<h4>Key Contributions</h4>
+						<ul>
+							<li>Construct and annotate echocardiogram datasets for automated aortic wall segmentation and diameter measurement</li>
+							<li>Develop machine learning models to predict progression of aortic root dilation and classify disease subtypes</li>
+							<li>Integrate data annotation and modeling pipelines to improve scalability and reproducibility</li>
+						</ul>
+					</div>
+					<div class="tech-stack">
+						<span class="tech">Machine Learning</span>
+						<span class="tech">Computer Vision</span>
+						<span class="tech">Medical Imaging</span>
+						<span class="tech">Echocardiography</span>
+					</div>
+				</div>
+
 				<div class="project-card" data-category="web-app machine-learning">
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">Music Dashboard</h3>
-							<span class="project-category">Web App</span>
-							<span class="project-category">Machine Learning</span>
 						</div>
 						<div class="project-links">
 							<a href="/blog#spotify-project" class="project-link">
@@ -69,6 +101,10 @@ import Layout from '../layouts/Layout.astro';
 								Blog Series
 							</a>
 						</div>
+					</div>
+					<div class="project-categories-row">
+						<span class="project-category">Web App</span>
+						<span class="project-category">Machine Learning</span>
 					</div>
 					<div class="project-duration">Nov 2025 – Present</div>
 					<p class="project-description">
@@ -124,11 +160,13 @@ import Layout from '../layouts/Layout.astro';
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">BucketList Community App</h3>
-							<span class="project-category">Mobile App</span>
 						</div>
 						<div class="project-links">
 							<span class="project-status">Commercial Project</span>
 						</div>
+					</div>
+					<div class="project-categories-row">
+						<span class="project-category">Mobile App</span>
 					</div>
 					<div class="project-duration">Sep 2024 – Jun 2025</div>
 					<p class="project-description">
@@ -155,7 +193,6 @@ import Layout from '../layouts/Layout.astro';
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">Gunn Alumni Network</h3>
-							<span class="project-category">Web App</span>
 						</div>
 						<div class="project-links">
 							<a href="https://alumni.gunnhigh.school" target="_blank" class="project-link">
@@ -171,6 +208,9 @@ import Layout from '../layouts/Layout.astro';
 								GitHub
 							</a>
 						</div>
+					</div>
+					<div class="project-categories-row">
+						<span class="project-category">Web App</span>
 					</div>
 					<div class="project-duration">Dec 2022 – May 2024</div>
 					<p class="project-description">
@@ -198,8 +238,6 @@ import Layout from '../layouts/Layout.astro';
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">Peace of Mind</h3>
-							<span class="project-category">Web App</span>
-							<span class="project-category">Machine Learning</span>
 						</div>
 						<div class="project-links">
 							<a href="https://peacemind.julia7hk.com" target="_blank" class="project-link">
@@ -215,6 +253,10 @@ import Layout from '../layouts/Layout.astro';
 								GitHub
 							</a>
 						</div>
+					</div>
+					<div class="project-categories-row">
+						<span class="project-category">Web App</span>
+						<span class="project-category">Machine Learning</span>
 					</div>
 					<div class="project-duration">May 2022 – June 2023</div>
 					<p class="project-description">
@@ -246,8 +288,6 @@ import Layout from '../layouts/Layout.astro';
 					<div class="project-header">
 						<div class="project-title-row">
 							<h3 class="project-title">FalconUp Investment</h3>
-							<span class="project-category">Web App</span>
-							<span class="project-category">Machine Learning</span>
 						</div>
 						<div class="project-links">
 							<a href="https://falconupapp.julia7hk.com" target="_blank" class="project-link">
@@ -263,6 +303,10 @@ import Layout from '../layouts/Layout.astro';
 								GitHub
 							</a>
 						</div>
+					</div>
+					<div class="project-categories-row">
+						<span class="project-category">Web App</span>
+						<span class="project-category">Machine Learning</span>
 					</div>
 					<div class="project-duration">Sep 2020 – Jan 2022</div>
 					<p class="project-description">
@@ -465,9 +509,6 @@ import Layout from '../layouts/Layout.astro';
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
-		margin-bottom: 0.5rem;
-		padding-bottom: 1rem;
-		border-bottom: 1px solid #e4e4e4;
 	}
 
 	.project-title-row {
@@ -482,6 +523,15 @@ import Layout from '../layouts/Layout.astro';
 		color: #2a2a2a;
 		margin: 0;
 		letter-spacing: -0.01em;
+	}
+
+	.project-categories-row {
+		display: flex;
+		gap: 0.5rem;
+		margin-top: 0.4rem;
+		padding-bottom: 1rem;
+		margin-bottom: 0.5rem;
+		border-bottom: 1px solid #e4e4e4;
 	}
 
 	.project-category {
