@@ -138,9 +138,8 @@ import profileImage from '../assets/profile.JPG';
 					</div>
 					<p>Predictive ML models for cardiovascular disease using echocardiogram data as a SURF Research Fellow at CVIRL.</p>
 					<div class="project-preview-tech">
-						<span>PyTorch</span>
 						<span>Python</span>
-						<span>AWS</span>
+						<span>UNet</span>
 					</div>
 				</a>
 			</div>
@@ -384,33 +383,36 @@ import profileImage from '../assets/profile.JPG';
 
 	/* Featured Projects */
 	.featured-projects {
-		padding: 3rem 0 4rem;
-		background: #fafaf8;
+		padding: 3.5rem 0 4.5rem;
+		background: #f3f4f6;
 		border-top: 1px solid #e4e4e4;
 	}
 
 	.projects-preview-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: 1.5rem;
 	}
 
 	.project-preview-card {
 		border: 1px solid #d4d4d4;
+		border-left: 3px solid #5372aa;
 		border-radius: 6px;
-		padding: 1.5rem;
+		padding: 1.75rem;
 		text-decoration: none;
 		color: inherit;
-		transition: all 0.2s ease;
+		transition: all 0.25s ease;
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
+		background: #fafaf8;
 	}
 
 	.project-preview-card:hover {
 		border-color: #5372aa;
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(83, 114, 170, 0.08);
+		border-left-color: #5372aa;
+		transform: translateY(-4px);
+		box-shadow: 0 8px 24px rgba(83, 114, 170, 0.12);
 	}
 
 	.project-preview-header {
@@ -421,17 +423,18 @@ import profileImage from '../assets/profile.JPG';
 	}
 
 	.project-preview-header h3 {
-		font-size: 1rem;
-		font-weight: 600;
+		font-size: 1.1rem;
+		font-weight: 700;
 		color: #2a2a2a;
 		letter-spacing: -0.01em;
 	}
 
 	.project-preview-status {
 		font-size: 0.7rem;
-		color: #5372aa;
-		border: 1px solid #5372aa;
-		padding: 0.15rem 0.5rem;
+		color: #fafaf8;
+		background: #5372aa;
+		border: none;
+		padding: 0.2rem 0.6rem;
 		border-radius: 3px;
 		font-weight: 500;
 		white-space: nowrap;
@@ -441,7 +444,7 @@ import profileImage from '../assets/profile.JPG';
 	.project-preview-card p {
 		font-size: 0.85rem;
 		color: #4a4a4a;
-		line-height: 1.6;
+		line-height: 1.7;
 		flex: 1;
 	}
 
@@ -449,14 +452,16 @@ import profileImage from '../assets/profile.JPG';
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.4rem;
+		margin-top: 0.25rem;
 	}
 
 	.project-preview-tech span {
 		font-size: 0.75rem;
-		color: #6a6a6a;
-		background: #f0f0ee;
-		padding: 0.2rem 0.5rem;
+		color: #5372aa;
+		background: rgba(83, 114, 170, 0.1);
+		padding: 0.25rem 0.6rem;
 		border-radius: 3px;
+		font-weight: 500;
 	}
 
 	/* Experience Preview */
