@@ -49,7 +49,9 @@ import profileImage from '../assets/profile.JPG';
 
 	<section class="skills-preview animate-slide-up">
 		<div class="container">
-			<h2 class="section-title">Technical Skills</h2>
+			<div class="section-header">
+				<h2 class="section-title">Technical Skills</h2>
+			</div>
 			<div class="skills-grid">
 				<div class="skill-category">
 					<h3>Languages</h3>
@@ -108,6 +110,43 @@ import profileImage from '../assets/profile.JPG';
 			</div>
 		</div>
 	</section>
+
+	<section class="featured-projects animate-slide-up">
+		<div class="container">
+			<div class="section-header">
+				<h2 class="section-title">Featured Projects</h2>
+				<a href="/projects" class="section-link">View All Projects &rarr;</a>
+			</div>
+			<div class="projects-preview-grid">
+				<a href="/projects" class="project-preview-card">
+					<div class="project-preview-header">
+						<h3>Mead Johnson PeptideX</h3>
+						<span class="project-preview-status">Current</span>
+					</div>
+					<p>Peptide database and web application for biomedical researchers, developed through The Data Mine corporate partnership.</p>
+					<div class="project-preview-tech">
+						<span>Python</span>
+						<span>Next.js</span>
+						<span>SQLite</span>
+						<span>React</span>
+					</div>
+				</a>
+				<a href="/projects" class="project-preview-card">
+					<div class="project-preview-header">
+						<h3>Aortic Root Dilation Research</h3>
+						<span class="project-preview-status">Current</span>
+					</div>
+					<p>Predictive ML models for cardiovascular disease using echocardiogram data as a SURF Research Fellow at CVIRL.</p>
+					<div class="project-preview-tech">
+						<span>PyTorch</span>
+						<span>Python</span>
+						<span>AWS</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+
 </Layout>
 
 <style>
@@ -238,18 +277,71 @@ import profileImage from '../assets/profile.JPG';
 		color: #5372aa;
 	}
 
-	.skills-preview {
-		padding: 3rem 0 4rem;
+	/* Stats Bar */
+	.stats-bar {
+		padding: 2rem 0;
 		background: #fafaf8;
 		border-top: 1px solid #e4e4e4;
 	}
 
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.5rem;
+		text-align: center;
+	}
+
+	.stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.stat-number {
+		font-size: 1.75rem;
+		font-weight: 700;
+		color: #5372aa;
+		letter-spacing: -0.02em;
+	}
+
+	.stat-label {
+		font-size: 0.8rem;
+		color: #6a6a6a;
+		font-weight: 400;
+	}
+
+	/* Section Header */
+	.section-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: 2rem;
+	}
+
 	.section-title {
 		font-size: 1.5rem;
-		margin-bottom: 2.5rem;
 		color: #2a2a2a;
 		font-weight: 600;
 		letter-spacing: -0.02em;
+	}
+
+	.section-link {
+		font-size: 0.85rem;
+		color: #5372aa;
+		text-decoration: none;
+		font-weight: 500;
+		transition: color 0.2s ease;
+	}
+
+	.section-link:hover {
+		color: #a9b4cd;
+	}
+
+	/* Skills */
+	.skills-preview {
+		padding: 3rem 0 4rem;
+		background: #fafaf8;
+		border-top: 1px solid #e4e4e4;
 	}
 
 	.skills-grid {
@@ -281,8 +373,217 @@ import profileImage from '../assets/profile.JPG';
 		border-radius: 4px;
 		font-size: 0.85rem;
 		font-weight: 400;
+		transition: all 0.2s ease;
 	}
 
+	.skill-tag:hover {
+		border-color: #5372aa;
+		color: #5372aa;
+		transform: translateY(-1px);
+	}
+
+	/* Featured Projects */
+	.featured-projects {
+		padding: 3rem 0 4rem;
+		background: #fafaf8;
+		border-top: 1px solid #e4e4e4;
+	}
+
+	.projects-preview-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.project-preview-card {
+		border: 1px solid #d4d4d4;
+		border-radius: 6px;
+		padding: 1.5rem;
+		text-decoration: none;
+		color: inherit;
+		transition: all 0.2s ease;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.project-preview-card:hover {
+		border-color: #5372aa;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(83, 114, 170, 0.08);
+	}
+
+	.project-preview-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+
+	.project-preview-header h3 {
+		font-size: 1rem;
+		font-weight: 600;
+		color: #2a2a2a;
+		letter-spacing: -0.01em;
+	}
+
+	.project-preview-status {
+		font-size: 0.7rem;
+		color: #5372aa;
+		border: 1px solid #5372aa;
+		padding: 0.15rem 0.5rem;
+		border-radius: 3px;
+		font-weight: 500;
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.project-preview-card p {
+		font-size: 0.85rem;
+		color: #4a4a4a;
+		line-height: 1.6;
+		flex: 1;
+	}
+
+	.project-preview-tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.project-preview-tech span {
+		font-size: 0.75rem;
+		color: #6a6a6a;
+		background: #f0f0ee;
+		padding: 0.2rem 0.5rem;
+		border-radius: 3px;
+	}
+
+	/* Experience Preview */
+	.experience-preview {
+		padding: 3rem 0 4rem;
+		background: #fafaf8;
+		border-top: 1px solid #e4e4e4;
+	}
+
+	.roles-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.role-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.25rem 0;
+		border-bottom: 1px solid #e4e4e4;
+		text-decoration: none;
+		color: inherit;
+		transition: all 0.2s ease;
+	}
+
+	.role-item:first-child {
+		border-top: 1px solid #e4e4e4;
+	}
+
+	.role-item:hover {
+		padding-left: 0.75rem;
+	}
+
+	.role-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.role-info h3 {
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #2a2a2a;
+		letter-spacing: -0.01em;
+	}
+
+	.role-org {
+		font-size: 0.8rem;
+		color: #6a6a6a;
+	}
+
+	.role-date {
+		font-size: 0.8rem;
+		color: #6a6a6a;
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	/* CTA Section */
+	.cta-section {
+		padding: 4rem 0;
+		background: #fafaf8;
+		border-top: 1px solid #e4e4e4;
+	}
+
+	.cta-content {
+		text-align: center;
+		max-width: 500px;
+		margin: 0 auto;
+	}
+
+	.cta-status {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 1.5rem;
+		font-size: 0.85rem;
+		color: #5372aa;
+		border: 1px solid #d4d4d4;
+		padding: 0.4rem 1rem;
+		border-radius: 20px;
+	}
+
+	.status-dot {
+		width: 8px;
+		height: 8px;
+		background: #5372aa;
+		border-radius: 50%;
+		animation: pulse 2s infinite;
+	}
+
+	@keyframes pulse {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.4;
+		}
+	}
+
+	.status-text {
+		font-weight: 500;
+	}
+
+	.cta-title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #2a2a2a;
+		margin-bottom: 1rem;
+		letter-spacing: -0.02em;
+	}
+
+	.cta-description {
+		font-size: 0.9rem;
+		color: #4a4a4a;
+		margin-bottom: 2rem;
+		line-height: 1.7;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	/* Responsive */
 	@media (max-width: 768px) {
 		.hero {
 			padding: 2rem 0 3rem;
@@ -330,18 +631,57 @@ import profileImage from '../assets/profile.JPG';
 			justify-content: center;
 		}
 
-		.skills-preview {
+		.stats-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+		}
+
+		.stat-number {
+			font-size: 1.5rem;
+		}
+
+		.skills-preview,
+		.featured-projects,
+		.experience-preview {
 			padding: 2rem 0 3rem;
+		}
+
+		.section-header {
+			flex-direction: column;
+			gap: 0.5rem;
+			margin-bottom: 1.5rem;
 		}
 
 		.section-title {
 			font-size: 1.25rem;
-			margin-bottom: 2rem;
 		}
 
 		.skills-grid {
 			grid-template-columns: 1fr;
 			gap: 1.5rem;
+		}
+
+		.projects-preview-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.role-item {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.25rem;
+		}
+
+		.cta-section {
+			padding: 3rem 0;
+		}
+
+		.cta-buttons {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.cta-buttons .btn {
+			width: 100%;
 		}
 
 		.container {
