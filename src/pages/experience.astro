@@ -272,8 +272,18 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 				</div>
 
-				<div class="timeline-divider">
-					<span class="divider-label">High School</span>
+			</div>
+		</div>
+
+		<div class="timeline-divider">
+			<span class="divider-label">High School</span>
+		</div>
+
+		<div class="container">
+			<div class="timeline-container">
+				<div class="timeline-headers">
+					<span class="timeline-header-left">Technical</span>
+					<span class="timeline-header-right">Leadership</span>
 				</div>
 
 				<div class="timeline-item leadership">
@@ -635,7 +645,8 @@ import Layout from '../layouts/Layout.astro';
 	.timeline-divider {
 		position: relative;
 		text-align: center;
-		margin: 3rem 40px;
+		margin: 3rem 0;
+		width: 100%;
 	}
 
 	.timeline-divider::before {
@@ -1023,8 +1034,7 @@ import Layout from '../layouts/Layout.astro';
 		}
 
 		.timeline-divider {
-			margin-left: 35px;
-			margin-right: 35px;
+			margin: 2rem 0;
 		}
 
 		.timeline-item::after {
