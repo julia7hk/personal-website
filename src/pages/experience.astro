@@ -479,6 +479,7 @@ import Layout from '../layouts/Layout.astro';
 	document.addEventListener('DOMContentLoaded', () => {
 		const filterBtns = document.querySelectorAll('.filter-btn');
 		const timelineItems = document.querySelectorAll('.timeline-item');
+		const timelineContainers = document.querySelectorAll('.timeline-container');
 
 		filterBtns.forEach(btn => {
 			btn.addEventListener('click', () => {
@@ -487,6 +488,14 @@ import Layout from '../layouts/Layout.astro';
 				// Update active button
 				filterBtns.forEach(b => b.classList.remove('active'));
 				btn.classList.add('active');
+
+				// Update timeline container filter class
+				timelineContainers.forEach(container => {
+					container.classList.remove('filter-technical', 'filter-leadership');
+					if (filter !== 'all') {
+						container.classList.add(`filter-${filter}`);
+					}
+				});
 
 				// Filter items
 				timelineItems.forEach(item => {
@@ -620,6 +629,20 @@ import Layout from '../layouts/Layout.astro';
 		bottom: 0;
 		width: 2px;
 		background: #EDA8A8;
+	}
+
+	.timeline-container.filter-technical::after,
+	.timeline-container.filter-technical .timeline-header-right {
+		display: none;
+	}
+
+	.timeline-container.filter-leadership::before,
+	.timeline-container.filter-leadership .timeline-header-left {
+		display: none;
+	}
+
+	.timeline-container.filter-leadership .timeline-header-right {
+		margin-left: auto;
 	}
 
 	.timeline-item {
