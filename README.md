@@ -6,7 +6,7 @@ Personal website showcasing some of my experience, projects, etc.
 
 ```text
 /
-├── public/              # Static assets (favicon, fonts, images)
+├── public/              # Static assets (favicon, fonts, images, CNAME)
 ├── src/
 │   ├── assets/          # Processed assets
 │   ├── components/      # Reusable Astro components

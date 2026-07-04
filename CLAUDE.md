@@ -4,77 +4,47 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal website built with Astro 5.13.9 using TypeScript. The project follows Astro's basic starter template structure and uses the strict TypeScript configuration.
+Personal portfolio website at julia7hk.com, built with Astro (static output) and deployed to GitHub Pages via GitHub Actions. Only dependency is Astro itself — no UI frameworks, CSS libraries, or CMS.
 
 ## Development Commands
 
-- `npm run dev` - Start development server at localhost:4321
-- `npm run build` - Build production site to ./dist/
-- `npm run preview` - Preview build locally before deploying
-- `npm run astro ...` - Run Astro CLI commands
+- `npm run dev` — Start dev server at localhost:4321
+- `npm run build` — Build to ./dist/
+- `npm run preview` — Preview production build locally
 
-## Project Structure
+## Architecture
 
-The codebase follows Astro's standard structure:
+### Two-Layout System
 
-```
-/
-├── public/          # Static assets served directly
-├── src/
-│   ├── assets/      # Processed assets (images, etc.)
-│   ├── components/  # Reusable Astro components
-│   ├── layouts/     # Page layout templates
-│   └── pages/       # File-based routing (index.astro = homepage)
-├── astro.config.mjs # Astro configuration (currently minimal)
-├── tsconfig.json    # TypeScript config (extends Astro strict)
-└── package.json     # Dependencies and scripts
-```
+- **Layout.astro** — Used by all main pages (home, about, experience, projects, contact). Contains the fixed navbar with profile image, mobile hamburger menu, and footer.
+- **BlogPost.astro** — Used by blog posts. Extends the navbar with a "Blog" link and adds comprehensive markdown content styling. Supports series navigation (prev/next) via `dayNumber` frontmatter.
 
-## Technology Stack
+Navbar code is duplicated between both layouts (not extracted into a shared component).
 
-- **Framework**: Astro 5.13.9 (Static Site Generator with islands architecture)
-- **Language**: TypeScript with strict configuration
-- **Styling**: Component-scoped CSS within .astro files
-- **Module System**: ES modules (`"type": "module"` in package.json)
+### Blog System
 
-## File Patterns
+Blog posts are **plain markdown files** in `src/pages/blog/`, NOT Astro Content Collections. Posts are organized into series folders:
 
-- `.astro` files contain frontmatter (TypeScript), HTML template, and scoped CSS
-- Pages in `src/pages/` map to routes (index.astro = /, about.astro = /about)
-- Components use Astro's component syntax with TypeScript frontmatter
-- Layout components provide page structure and are imported into pages
+- `src/pages/blog/spotify-project/` — multi-part series
+- `src/pages/blog/sase-sniping-discord-bot/` — multi-part series
+- `src/pages/blog/fixing-the-sase-website/` — multi-part series
+- `src/pages/blog/miscellaneous/` — standalone posts
 
-## Current Implementation
+**Blog index** (`blog.astro`) discovers posts via `Astro.glob()` and groups them by folder.
+**Dynamic routing** (`[...slug].astro`) uses `getStaticPaths()` with `import.meta.glob()`.
 
-The personal website includes the following pages and features:
+Blog post frontmatter: `title`, `date`, `description`, `dayNumber` (optional, for series ordering), `tags` (optional).
 
-### Pages
-- **index.astro** - Homepage with hero section, profile image, social links, and technical skills overview
-- **about.astro** - Detailed about page with education, comprehensive technical skills with icons, and areas of interest
-- **projects.astro** - Projects showcase (if exists)
-- **contact.astro** - Contact information (if exists)
+### Styling
 
-### Design System
-- **Color Scheme**: Minimal design with #fafaf8 background, #2a2a2a primary text, #4a4a4a secondary text
-- **Typography**: System fonts with careful letter-spacing and line-height
-- **Components**: Bordered cards, skill tags/badges, social media icons
-- **Responsive**: Mobile-first approach with breakpoints at 768px
+- Pure scoped CSS in `<style>` tags within each `.astro` file; global styles use `is:global`
+- Font: Atkinson Hyperlegible Mono (Google Fonts, loaded in layouts)
+- Color palette: #fafaf8 background, #2a2a2a primary text, #5372aa accent, #a9b4cd accent light
+- Responsive breakpoint at 768px
+- Card pattern: bordered containers with left accent stripe (`border-left: 3px solid #5372aa`)
 
-### Key Features
-- Profile image integration using Astro's Image component
-- Social media links (GitHub, LinkedIn, Email) with SVG icons
-- Technical skills organized by category:
-  - Languages (Python, TypeScript, JavaScript, C, Java, SQL, HTML, CSS, R)
-  - Web Frameworks/Libraries (React, Next.js, TailwindCSS, Flask, FastAPI, Prisma, React Native)
-  - AI Framework/Library (PyTorch, TensorFlow, NumPy, Pandas, Matplotlib)
-  - Databases (Postgres, Supabase, Firebase)
-  - Cloud (AWS, Google Compute Platform, Oracle Cloud, Netlify)
-- Icon-enhanced skill badges on about page using SVG logos
-- GPA display and coursework listing on about page
-- Areas of interest cards showcasing specializations
+## Deployment
 
-### Styling Conventions
-- Component-scoped CSS in each .astro file
-- Consistent spacing with rem units
-- Border-based design with subtle hover effects
-- Clean, professional aesthetic suitable for a CS/AI student portfolio
+- GitHub Pages via `.github/workflows/deploy.yml` (triggers on push to `main`)
+- Custom domain configured via `public/CNAME` — this file must stay in `public/` so Astro includes it in the build output
+- `astro.config.mjs` sets `site: 'https://julia7hk.com'`
