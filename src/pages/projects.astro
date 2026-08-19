@@ -995,4 +995,28 @@ import Layout from '../layouts/Layout.astro';
 			});
 		});
 	});
+
+	// Smoothly scroll a project card to the vertical center of the viewport.
+	function centerCard(id, smooth) {
+		const el = id && document.getElementById(id);
+		if (el) el.scrollIntoView({ block: 'center', behavior: smooth ? 'smooth' : 'auto' });
+	}
+
+	if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+	// On first load, strip the fragment BEFORE the browser performs its default
+	// top-aligned jump, so the page stays at the top. Then, once images have
+	// loaded and the layout is stable, do a single smooth scroll to center the
+	// card — one clean motion instead of a jump-then-recenter.
+	const initialHash = window.location.hash.slice(1);
+	if (initialHash) {
+		history.replaceState(null, '', window.location.pathname + window.location.search);
+		window.addEventListener('load', () => {
+			centerCard(initialHash, true);
+			history.replaceState(null, '', '#' + initialHash);
+		});
+	}
+
+	// In-page hash changes (links within the site) animate smoothly too.
+	window.addEventListener('hashchange', () => centerCard(window.location.hash.slice(1), true));
 </script>
