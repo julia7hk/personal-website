@@ -11,6 +11,9 @@ Personal portfolio website at julia7hk.com, built with Astro (static output) and
 - `npm run dev` — Start dev server at localhost:4321
 - `npm run build` — Build to ./dist/
 - `npm run preview` — Preview production build locally
+- `npm run astro check` — Type-check (TS `strict` via `astro/tsconfigs/strict`)
+
+There is no test suite or linter configured — `astro check` is the only static verification.
 
 ## Architecture
 
@@ -30,10 +33,14 @@ Blog posts are **plain markdown files** in `src/pages/blog/`, NOT Astro Content 
 - `src/pages/blog/fixing-the-sase-website/` — multi-part series
 - `src/pages/blog/miscellaneous/` — standalone posts
 
-**Blog index** (`blog.astro`) discovers posts via `Astro.glob()` and groups them by folder.
-**Dynamic routing** (`[...slug].astro`) uses `getStaticPaths()` with `import.meta.glob()`.
+**Blog index** (`blog.astro`) discovers posts via `Astro.glob()` and groups them by a `projectName` derived from the post **title** — the part before `" - "` (e.g. `"Spotify Project - Day 1"` → group `"Spotify Project"`). This is title-based, NOT folder-based, so a post's title prefix determines its group on the index.
+**Dynamic routing** (`[...slug].astro`) uses `getStaticPaths()` with `import.meta.glob()` and groups by **folder** to compute prev/next series navigation. All posts resolve to a flat `/blog/<filename>` URL regardless of folder, so filenames must be unique across folders.
 
-Blog post frontmatter: `title`, `date`, `description`, `dayNumber` (optional, for series ordering), `tags` (optional).
+Blog post frontmatter: `title`, `date`, `description`, `dayNumber` (optional, for series ordering), `tags` (optional). Blog images live in `public/blog-images/`.
+
+### Projects Page
+
+`projects.astro` has a client-side category filter: `.filter-btn` buttons carry a `data-filter` value and each `.project-card` carries a space-separated `data-category` (e.g. `data-category="web-app machine-learning"`). A small inline script shows/hides cards on click. When adding a project, its `data-category` values must match existing filter-button `data-filter` values, or add a new button.
 
 ### Styling
 
@@ -47,4 +54,4 @@ Blog post frontmatter: `title`, `date`, `description`, `dayNumber` (optional, fo
 
 - GitHub Pages via `.github/workflows/deploy.yml` (triggers on push to `main`)
 - Custom domain configured via `public/CNAME` — this file must stay in `public/` so Astro includes it in the build output
-- `astro.config.mjs` sets `site: 'https://julia7hk.com'`
+- `astro.config.mjs` sets `site: 'https://julia7hk.com'` and `base: '/'` (served at domain root, not a subpath)
