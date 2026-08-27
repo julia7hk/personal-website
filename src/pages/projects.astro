@@ -71,6 +71,65 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 				</div>
 
+				<div id="spotify-dashboard" class="project-card featured" data-category="web-app machine-learning">
+					<div class="project-header">
+						<div class="project-title-row">
+							<h3 class="project-title">Spotify Dashboard &mdash; Music Analytics</h3>
+						</div>
+						<div class="project-links">
+							<a href="https://music.julia7hk.com" target="_blank" class="project-link">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
+								Live Site
+							</a>
+							<a href="https://github.com/julia7hk/spotify" target="_blank" class="project-link">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" /></svg>
+								GitHub
+							</a>
+							<a href="/blog#spotify-project" class="project-link">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" /></svg>
+								Blog Series
+							</a>
+						</div>
+					</div>
+					<div class="project-categories-row">
+						<span class="project-category">Web App</span>
+						<span class="project-category">Machine Learning</span>
+					</div>
+					<div class="project-duration">May 2025 &ndash; Present</div>
+					<p class="project-description">
+						A self-hosted alternative to Spotify Wrapped: a deployed dashboard that surfaces top artists, tracks, and listening stats across multiple time ranges on any day of the year rather than once every November. Next.js frontend over a Flask backend that owns all Spotify OAuth and API access, shipped as two Docker images to an Oracle Cloud VM.
+					</p>
+					<p class="project-note">
+						<strong>Note on the live site:</strong> Spotify caps apps in Developer Mode at five authorized listeners, and lifting that cap requires a quota-extension approval that is not granted to personal projects. The deployment is fully public and the login flow works, but only allowlisted Spotify accounts can complete authorization &mdash; so expect the sign-in step to reject you unless I have added your account. The <a href="https://github.com/julia7hk/spotify" target="_blank">source</a> and the <a href="/blog#spotify-project">blog series</a> are the best way to see the whole thing.
+					</p>
+					<div class="project-highlights">
+						<h4>Key Features</h4>
+						<ul>
+							<li>Full Spotify OAuth flow handled server-side, with tokens never exposed to the browser and same-origin API proxying through Next.js rewrites</li>
+							<li>Top artists, tracks, playlists, and listening profile across 4-week, 6-month, and all-time windows</li>
+							<li>Album explorer panel that opens any top track&rsquo;s album and badges the tracks that also chart in your top 50, with ID-first matching and a disclosed title-match fallback</li>
+							<li>Normalizer layer that absorbs Spotify&rsquo;s API deprecations in one place, keeping routes thin after endpoint removals and response fields disappearing upstream</li>
+							<li>Self-hosted on an Oracle Cloud VM behind a shared nginx edge proxy and Cloudflare, with GitHub Actions building and publishing both images on every push</li>
+							<li>CI runs pytest against captured real API response shapes plus TypeScript typechecking and a production build, so the next upstream schema change fails the build instead of silently emptying a chart</li>
+							<li>In progress: a vibe-based recommendation engine using crowd tags and LLM inference to hold mood axes (tempo, energy, language, familiarity) independent, replacing the retired Spotify audio-features and recommendations endpoints</li>
+						</ul>
+					</div>
+					<div class="tech-stack">
+						<span class="tech">Next.js</span>
+						<span class="tech">React</span>
+						<span class="tech">TypeScript</span>
+						<span class="tech">Tailwind CSS</span>
+						<span class="tech">Flask</span>
+					</div>
+					<div class="tech-stack">
+						<span class="tech">Python</span>
+						<span class="tech">Spotify API</span>
+						<span class="tech">Docker</span>
+						<span class="tech">GitHub Actions</span>
+						<span class="tech">nginx</span>
+					</div>
+				</div>
+
 				<div id="aortic-root-dilation" class="project-card featured" data-category="machine-learning">
 					<div class="project-header">
 						<div class="project-title-row">
@@ -135,44 +194,6 @@ import Layout from '../layouts/Layout.astro';
 						<span class="tech">SQLite</span>
 						<span class="tech">PostgreSQL</span>
 						<span class="tech">Data Processing</span>
-					</div>
-				</div>
-
-				<div class="project-card" data-category="web-app machine-learning">
-					<div class="project-header">
-						<div class="project-title-row">
-							<h3 class="project-title">Music Dashboard</h3>
-						</div>
-						<div class="project-links">
-							<a href="/blog#spotify-project" class="project-link">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-									<path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-								</svg>
-								Blog Series
-							</a>
-						</div>
-					</div>
-					<div class="project-categories-row">
-						<span class="project-category">Web App</span>
-						<span class="project-category">Machine Learning</span>
-					</div>
-					<div class="project-duration">Nov 2025 – Present</div>
-					<p class="project-description">
-						A personalized music analytics dashboard that visualizes Spotify listening habits and trends. Built with a Python backend for data processing and a Next.js frontend for interactive visualizations. Additionally experiment with pre-trained vocal suppression machine learning models.
-					</p>
-					<div class="project-highlights">
-						<h4>Key Features</h4>
-						<ul>
-							<li>Spotify API integration for listening history and playlist data</li>
-							<li>Interactive visualizations of music trends and listening patterns</li>
-						</ul>
-					</div>
-					<div class="tech-stack">
-						<span class="tech">Python</span>
-						<span class="tech">Spotify API</span>
-						<span class="tech">Next.js</span>
-						<span class="tech">Vocal Suppression</span>
-						<span class="tech">Demucs</span>
 					</div>
 				</div>
 
@@ -559,12 +580,15 @@ import Layout from '../layouts/Layout.astro';
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
+		gap: 1.5rem;
 	}
 
 	.project-title-row {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		flex: 1;
+		min-width: 0;
 	}
 
 	.project-title {
@@ -596,7 +620,10 @@ import Layout from '../layouts/Layout.astro';
 
 	.project-links {
 		display: flex;
-		gap: 1rem;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: 0.5rem 1rem;
+		flex-shrink: 0;
 	}
 
 	.project-link {
@@ -607,7 +634,12 @@ import Layout from '../layouts/Layout.astro';
 		text-decoration: underline;
 		font-weight: 400;
 		font-size: 0.85rem;
+		white-space: nowrap;
 		transition: color 0.2s ease;
+	}
+
+	.project-link svg {
+		flex-shrink: 0;
 	}
 
 	.project-link:hover {
@@ -629,6 +661,30 @@ import Layout from '../layouts/Layout.astro';
 		margin-bottom: 1rem;
 		margin-top: 1rem;
 		font-weight: 400;
+	}
+
+	.project-note {
+		font-size: 0.85rem;
+		line-height: 1.6;
+		color: #6a6a6a;
+		background: rgba(169, 180, 205, 0.12);
+		border-left: 2px solid #a9b4cd;
+		padding: 0.75rem 1rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.project-note strong {
+		color: #5372aa;
+		font-weight: 400;
+	}
+
+	.project-note a {
+		color: #5372aa;
+		text-decoration: underline;
+	}
+
+	.project-note a:hover {
+		color: #a9b4cd;
 	}
 
 	.project-description {
@@ -908,7 +964,8 @@ import Layout from '../layouts/Layout.astro';
 
 		.project-links {
 			align-self: flex-start;
-			gap: 0.75rem;
+			justify-content: flex-start;
+			gap: 0.5rem 0.75rem;
 		}
 
 		.project-link {
