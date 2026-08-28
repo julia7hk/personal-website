@@ -3,6 +3,8 @@ title: "Fixing the SASE Website - New Site"
 date: "2025-12-20"
 description: "Exploring HostGator, SSL certificates, and considering switching to WordPress"
 dayNumber: 3
+milestone: 2
+milestoneTitle: "wordpress on hostgator"
 ---
 
 we are finallyyy getting to this

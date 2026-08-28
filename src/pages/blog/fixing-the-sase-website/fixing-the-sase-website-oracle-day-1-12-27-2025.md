@@ -3,6 +3,8 @@ title: "Fixing the SASE Website - Oracle Day 1"
 date: "2025-12-27"
 description: "Exploring Oracle Cloud Free Tier as an alternative to HostGator for hosting the SASE Purdue WordPress site"
 dayNumber: 7
+milestone: 3
+milestoneTitle: "oracle cloud hosting"
 ---
 
 12/26/2025

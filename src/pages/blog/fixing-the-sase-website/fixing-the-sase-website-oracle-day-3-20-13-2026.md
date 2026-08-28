@@ -3,6 +3,8 @@ title: "Fixing the SASE Website - Oracle Day 3"
 date: "2026-02-13"
 description: "Automating Oracle Cloud A1 instance creation and setting up API credentials for the SASE Purdue website"
 dayNumber: 9
+milestone: 3
+milestoneTitle: "oracle cloud hosting"
 ---
 
 [02/13/2026](#february-13-2026):

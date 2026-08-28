@@ -3,6 +3,8 @@ title: "Fixing the SASE Website - Oracle Day 2"
 date: "2026-01-26"
 description: "Continuing the Oracle Cloud VM setup - configuring storage settings and boot volume options"
 dayNumber: 8
+milestone: 3
+milestoneTitle: "oracle cloud hosting"
 ---
 
 hello its been a month since i am revisiting this

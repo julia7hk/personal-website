@@ -21,7 +21,9 @@ const blogPosts = allPosts.map(post => {
 		date: post.frontmatter.date,
 		tags: post.frontmatter.tags || [],
 		projectName: projectName,
-		dayNumber: post.frontmatter.dayNumber || null
+		dayNumber: post.frontmatter.dayNumber || null,
+		milestone: post.frontmatter.milestone ?? null,
+		milestoneTitle: post.frontmatter.milestoneTitle || null
 	};
 }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -34,21 +36,47 @@ const groupedPosts = blogPosts.reduce((acc, post) => {
 	return acc;
 }, {} as Record<string, typeof blogPosts>);
 
-// Sort posts within each group by day number (descending - most recent first)
+// Sort posts within each group chronologically, so a series reads Day 1 -> Day N
+// (milestone sub-groups sort the same way, in buildMilestones below)
 Object.values(groupedPosts).forEach(group => {
 	group.sort((a, b) => {
 		if (a.dayNumber !== null && b.dayNumber !== null) {
-			return b.dayNumber - a.dayNumber; // Reverse order for descending
+			return a.dayNumber - b.dayNumber;
 		}
-		return new Date(b.date).getTime() - new Date(a.date).getTime(); // Reverse order for descending
+		return new Date(a.date).getTime() - new Date(b.date).getTime();
 	});
 });
+
+// Group a project's posts into milestones (ascending), for series that use them.
+// A milestone with no milestoneTitle renders as an unlabeled group in its numeric slot.
+function buildMilestones(posts: typeof blogPosts) {
+	if (!posts.some(p => p.milestone !== null)) return null;
+
+	const byMilestone = new Map<number, typeof blogPosts>();
+	posts.forEach(post => {
+		const key = post.milestone ?? Infinity;
+		if (!byMilestone.has(key)) byMilestone.set(key, []);
+		byMilestone.get(key)!.push(post);
+	});
+
+	return [...byMilestone.entries()]
+		.sort((a, b) => a[0] - b[0])
+		.map(([milestone, milestonePosts]) => ({
+			milestone,
+			title: milestonePosts.find(p => p.milestoneTitle)?.milestoneTitle || null,
+			posts: [...milestonePosts].sort((a, b) => {
+				if (a.dayNumber !== null && b.dayNumber !== null) return a.dayNumber - b.dayNumber;
+				return new Date(a.date).getTime() - new Date(b.date).getTime();
+			})
+		}));
+}
 
 // Convert to array and determine if it's a project or standalone post
 const projectGroups = Object.entries(groupedPosts)
 	.map(([projectName, posts]) => ({
 		projectName,
 		posts,
+		milestones: buildMilestones(posts),
 		latestDate: Math.max(...posts.map(p => new Date(p.date).getTime())),
 		isProject: posts.length > 1 || posts.some(p => p.dayNumber !== null)
 	}))
@@ -62,6 +90,7 @@ const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.p
 const projectDescriptions: Record<string, string> = {
 	"SASE Sniping Discord Bot": "A Discord bot that automatically notifies mentees about mentors' whereabouts for sniping",
 	"Fixing the SASE Website": "Rebuilding SASE Purdue's website (doing detective work and learning Wordpress)",
+	"FalconUp 2026": "A portfolio risk dashboard \u2014 FastAPI + Next.js, self-hosted, built milestone by milestone",
 	"Spotify Project": "A personal Spotify dashboard to track listening stats and get better song recommendations (because i was unhappy with spotify wrapped)",
 };
 ---
@@ -71,7 +100,8 @@ const projectDescriptions: Record<string, string> = {
 		<div class="container">
 			<h1 class="page-title">Blog</h1>
 			<p class="page-subtitle">
-				Documentation of little projects or learning i do :D
+				Documentation of little projects or learning.
+				These serve as a personal archive or a future reference that I can come back to for reference.
 			</p>
 		</div>
 	</section>
@@ -79,11 +109,14 @@ const projectDescriptions: Record<string, string> = {
 	<section class="blog-content">
 		<div class="container">
 			<div class="blog-grid">
-				{projects.map(({ projectName, posts }) => {
+				{projects.map(({ projectName, posts, milestones }) => {
 					const slug = projectName.toLowerCase().replace(/\s+/g, '-');
+					// Projects without milestones render as a single unlabeled section,
+					// so the markup below only needs one nesting shape.
+					const sections = milestones ?? [{ milestone: null, title: null, posts }];
 					return (
 						<div class="project-group" id={slug}>
-							<button class="project-header" aria-expanded="true" aria-controls={`${slug}-posts`}>
+							<button class="project-header" aria-expanded="false" aria-controls={`${slug}-posts`}>
 								<div class="project-header-content">
 									<h2 class="project-title">{projectName}</h2>
 									<span class="post-count">{posts.length} {posts.length === 1 ? 'entry' : 'entries'}</span>
@@ -95,8 +128,17 @@ const projectDescriptions: Record<string, string> = {
 							{projectDescriptions[projectName] && (
 								<p class="project-description">{projectDescriptions[projectName]}</p>
 							)}
-						<div class="project-posts" id={`${slug}-posts`}>
-							{posts.map((post) => {
+						<div class="project-posts collapsed" id={`${slug}-posts`}>
+							{sections.map((section) => (
+								<div class="milestone-group">
+									{section.milestone !== null && (
+										<h3 class="milestone-heading">
+											<span class="milestone-label">milestone {section.milestone}:</span>
+											{section.title && <span class="milestone-name">{section.title}</span>}
+										</h3>
+									)}
+									<div class="milestone-posts">
+							{section.posts.map((post) => {
 								const [year, month, day] = post.date.split('-').map(Number);
 								const localDate = new Date(year, month - 1, day);
 								return (
@@ -132,6 +174,9 @@ const projectDescriptions: Record<string, string> = {
 									</a>
 								);
 							})}
+									</div>
+								</div>
+							))}
 						</div>
 					</div>
 					);
@@ -270,18 +315,64 @@ const projectDescriptions: Record<string, string> = {
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-		overflow: hidden;
-		transition: max-height 0.4s ease, opacity 0.3s ease;
 	}
 
-	.project-posts.collapsed {
-		max-height: 0 !important;
+	.project-posts.collapsed .milestone-posts {
+		max-height: 0;
 		opacity: 0;
 		margin: 0;
 	}
 
-	.project-description.collapsed {
-		display: none;
+	/* An unlabeled milestone has no heading to keep visible, so collapsing it
+	   should leave no gap behind. */
+	.project-posts.collapsed .milestone-group:not(:has(.milestone-heading)) {
+		gap: 0;
+	}
+
+	.milestone-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.milestone-group + .milestone-group {
+		margin-top: 1.25rem;
+	}
+
+	.project-posts.collapsed .milestone-group + .milestone-group {
+		margin-top: 0.4rem;
+	}
+
+	.milestone-heading {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		align-items: baseline;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #2a2a2a;
+		margin: 0.25rem 0 0.1rem;
+		padding-left: 0.75rem;
+		border-left: 3px solid #a9b4cd;
+	}
+
+	.milestone-label {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.milestone-name {
+		font-weight: 500;
+		color: #6a6a6a;
+	}
+
+	.milestone-posts {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		overflow: hidden;
+		max-height: 8000px;
+		transition: max-height 0.4s ease, opacity 0.3s ease;
 	}
 
 	.project-title {
@@ -433,19 +524,12 @@ const projectDescriptions: Record<string, string> = {
 	document.querySelectorAll('.project-header').forEach(button => {
 		const postsId = button.getAttribute('aria-controls');
 		const postsEl = postsId ? document.getElementById(postsId) : null;
-		const descEl = button.nextElementSibling?.classList.contains('project-description')
-			? button.nextElementSibling
-			: null;
-
 		button.addEventListener('click', () => {
 			const isExpanded = button.getAttribute('aria-expanded') === 'true';
 			button.setAttribute('aria-expanded', String(!isExpanded));
 
 			if (postsEl) {
 				postsEl.classList.toggle('collapsed', isExpanded);
-			}
-			if (descEl) {
-				descEl.classList.toggle('collapsed', isExpanded);
 			}
 		});
 	});
