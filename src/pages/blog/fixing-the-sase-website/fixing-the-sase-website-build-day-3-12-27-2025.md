@@ -3,6 +3,8 @@ title: "Fixing the SASE Website - Build Day 3"
 date: "2025-12-27"
 description: "it works !! wordpress in action"
 dayNumber: 6
+milestone: 2
+milestoneTitle: "wordpress on hostgator"
 ---
 
 OMG IT WORKSSSSSSSSS

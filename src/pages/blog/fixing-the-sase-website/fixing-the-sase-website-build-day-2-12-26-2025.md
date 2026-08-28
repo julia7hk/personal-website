@@ -3,6 +3,8 @@ title: "Fixing the SASE Website - Build Day 2"
 date: "2025-12-26"
 description: "Troubleshooting WordPress installation issues on HostGator - PHP execution and DNS problems"
 dayNumber: 5
+milestone: 2
+milestoneTitle: "wordpress on hostgator"
 ---
 
 left off at troubleshooting why `/wp-admin`  page doesnt pop up
