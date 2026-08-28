@@ -86,6 +86,13 @@ const projectGroups = Object.entries(groupedPosts)
 const projects = projectGroups.filter(g => g.isProject);
 const standalonePosts = projectGroups.filter(g => !g.isProject).flatMap(g => g.posts);
 
+// Two independent columns rather than a 2-across grid, so a tall project doesn't
+// leave a hole beside it. Alternating keeps the two most recent groups on top.
+const projectColumns = [
+	projects.filter((_, i) => i % 2 === 0),
+	projects.filter((_, i) => i % 2 === 1)
+];
+
 // Project descriptions
 const projectDescriptions: Record<string, string> = {
 	"SASE Sniping Discord Bot": "A Discord bot that automatically notifies mentees about mentors' whereabouts for sniping",
@@ -100,7 +107,9 @@ const projectDescriptions: Record<string, string> = {
 		<div class="container">
 			<h1 class="page-title">Blog</h1>
 			<p class="page-subtitle">
-				Documentation of little projects or learning.
+				Documentation of little projects or learning :D
+			</p>
+			<p class="page-subtitle">
 				These serve as a personal archive or a future reference that I can come back to for reference.
 			</p>
 		</div>
@@ -109,7 +118,9 @@ const projectDescriptions: Record<string, string> = {
 	<section class="blog-content">
 		<div class="container">
 			<div class="blog-grid">
-				{projects.map(({ projectName, posts, milestones }) => {
+				{projectColumns.map((column) => (
+				<div class="blog-column">
+				{column.map(({ projectName, posts, milestones }) => {
 					const slug = projectName.toLowerCase().replace(/\s+/g, '-');
 					// Projects without milestones render as a single unlabeled section,
 					// so the markup below only needs one nesting shape.
@@ -181,8 +192,11 @@ const projectDescriptions: Record<string, string> = {
 					</div>
 					);
 				})}
+				</div>
+				))}
+			</div>
 
-				{standalonePosts.length > 0 && (
+			{standalonePosts.length > 0 && (
 					<div class="project-group" id="miscellaneous">
 						<h2 class="project-title">Miscellaneous</h2>
 						<div class="project-posts">
@@ -219,8 +233,7 @@ const projectDescriptions: Record<string, string> = {
 							})}
 						</div>
 					</div>
-				)}
-			</div>
+			)}
 		</div>
 	</section>
 </Layout>
@@ -233,7 +246,7 @@ const projectDescriptions: Record<string, string> = {
 	}
 
 	.container {
-		max-width: 900px;
+		max-width: 1000px;
 		margin: 0 auto;
 		padding: 0 2rem;
 	}
@@ -249,7 +262,6 @@ const projectDescriptions: Record<string, string> = {
 	.page-subtitle {
 		font-size: 0.95rem;
 		color: #6a6a6a;
-		max-width: 700px;
 		line-height: 1.7;
 	}
 
@@ -260,9 +272,30 @@ const projectDescriptions: Record<string, string> = {
 
 	.blog-grid {
 		display: grid;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 3rem;
+		align-items: start;
+	}
+
+	@media (min-width: 1000px) {
+		.blog-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	/* Each column packs its own groups, so a tall project on one side never
+	   forces whitespace on the other. */
+	.blog-column {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		min-width: 0;
+	}
+
+	/* Standalone posts aren't a series: single column, centred under both. */
+	#miscellaneous {
 		max-width: 700px;
-		margin: 0 auto;
+		margin: 3rem auto 0;
 	}
 
 	.project-group {
@@ -500,6 +533,10 @@ const projectDescriptions: Record<string, string> = {
 	}
 
 	@media (max-width: 768px) {
+		.blog-hero {
+			padding: 2rem 0 3rem;
+		}
+
 		.page-title {
 			font-size: 1.75rem;
 		}
