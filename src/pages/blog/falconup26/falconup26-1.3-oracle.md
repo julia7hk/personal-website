@@ -22,7 +22,7 @@ i was able to get another Seoul Ampere on Oracle Cloud
 to get in right now:
 
 ```jsx
-ssh ubuntu@193.123.242.116
+ssh ubuntu@<oc40-public-ip>
 ```
 
 resolve this
@@ -177,7 +177,7 @@ opens postgres client
 alter postgres user
 
 ```jsx
-ALTER USER postgres WITH PASSWORD 'postgres';
+ALTER USER postgres WITH PASSWORD '<strong-password>';
 ```
 
 create database
@@ -292,7 +292,7 @@ the key changes for oc40:
 ```jsx
 PGHOST=172.17.0.1
 PGUSER=postgres
-PGPASSWORD=postgres
+PGPASSWORD=<strong-password>
 PGDATABASE=falconup
 ```
 

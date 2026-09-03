@@ -61,13 +61,13 @@ This configuration file snippet includes the basic authentication information yo
 
 **Fingerprint**
 
-0a:63:1f:fd:73:45:2c:25:29:21:42:ea:33:36:eb:7e
+`<your API key fingerprint>`
 
 ```
 [DEFAULT]
-user=ocid1.user.oc1..aaaaaaaacdbuipyyahyvi6ww2rppp4a2ptyiwzxhpa3reilngndsyu5frlda
-fingerprint=0a:63:1f:fd:73:45:2c:25:29:21:42:ea:33:36:eb:7e
-tenancy=ocid1.tenancy.oc1..aaaaaaaaavc7tpb3c3vtvaqkczswg6i3w3njys7za225gakx2seybejlirhq
+user=<your user OCID>
+fingerprint=<your API key fingerprint>
+tenancy=<your tenancy OCID>
 region=us-chicago-1
 key_file=<path to your private keyfile> # TODO
 ```
