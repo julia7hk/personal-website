@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import profileImage from '../assets/profile.JPG';
+import Clarity from '../components/Clarity.astro';
 
 export interface Props {
 	title?: string;
@@ -22,6 +23,7 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;700&display=swap" rel="stylesheet">
+		<Clarity />
 	</head>
 	<body>
 		<nav class="navbar">

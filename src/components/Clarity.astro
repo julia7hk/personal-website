@@ -1,0 +1,32 @@
+---
+// Microsoft Clarity — session replay + heatmaps.
+//
+// Deliberately scoped to julia7hk.com. Replay reconstructs the rendered DOM,
+// including visible text, so this must never load on falconup.julia7hk.com or
+// music.julia7hk.com, where the page shows other people's holdings and Spotify
+// accounts.
+//
+// The project ID is not a secret — it ships in the page HTML either way. Get it
+// from clarity.microsoft.com -> Settings -> Setup, then either paste it below or
+// set PUBLIC_CLARITY_PROJECT_ID in the build environment.
+const PROJECT_ID = import.meta.env.PUBLIC_CLARITY_PROJECT_ID ?? 'ydn2kfj3k1';
+
+// Ship the tag only in production builds, so `npm run dev` never shows up in the
+// dashboard, and only once a real ID is in place (renders nothing until then).
+const enabled = import.meta.env.PROD && Boolean(PROJECT_ID);
+---
+
+{enabled && (
+	<script is:inline define:vars={{ PROJECT_ID }}>
+		// Runtime guard: GitHub Pages also serves this same build at
+		// julia7hk.github.io. Only the real domain should record.
+		if (location.hostname === 'julia7hk.com' || location.hostname === 'www.julia7hk.com') {
+			(function (c, l, a, r, i, t, y) {
+				c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+				t = l.createElement(r); t.async = 1;
+				t.src = 'https://www.clarity.ms/tag/' + i;
+				y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+			})(window, document, 'clarity', 'script', PROJECT_ID);
+		}
+	</script>
+)}
