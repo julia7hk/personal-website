@@ -21,12 +21,28 @@ const enabled = import.meta.env.PROD && Boolean(PROJECT_ID);
 		// Runtime guard: GitHub Pages also serves this same build at
 		// julia7hk.github.io. Only the real domain should record.
 		if (location.hostname === 'julia7hk.com' || location.hostname === 'www.julia7hk.com') {
-			(function (c, l, a, r, i, t, y) {
-				c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
-				t = l.createElement(r); t.async = 1;
-				t.src = 'https://www.clarity.ms/tag/' + i;
-				y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-			})(window, document, 'clarity', 'script', PROJECT_ID);
+			// Personal opt-out, so my own visits don't pollute the numbers.
+			// Visit https://julia7hk.com/?clarity=off once per browser/device to
+			// stop recording, ?clarity=on to start again. Stored in localStorage,
+			// so it survives until site data is cleared.
+			var optedOut = false;
+			try {
+				var param = new URLSearchParams(location.search).get('clarity');
+				if (param === 'off') localStorage.setItem('clarity-opt-out', '1');
+				if (param === 'on') localStorage.removeItem('clarity-opt-out');
+				optedOut = localStorage.getItem('clarity-opt-out') === '1';
+			} catch (e) {
+				// Private mode / blocked storage: fall through and record as usual.
+			}
+
+			if (!optedOut) {
+				(function (c, l, a, r, i, t, y) {
+					c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+					t = l.createElement(r); t.async = 1;
+					t.src = 'https://www.clarity.ms/tag/' + i;
+					y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+				})(window, document, 'clarity', 'script', PROJECT_ID);
+			}
 		}
 	</script>
 )}
