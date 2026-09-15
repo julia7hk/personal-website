@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import profileImage from '../assets/profile.JPG';
 import Clarity from '../components/Clarity.astro';
+import Footer from '../components/Footer.astro';
 
 export interface Props {
 	title?: string;
@@ -50,6 +51,7 @@ const { title = "Julia Kang - CS & AI Student", description = "Computer Science 
 		<main>
 			<slot />
 		</main>
+		<Footer />
 		<script>
 			const navToggle = document.querySelector('.nav-toggle');
 			const navMenu = document.querySelector('.nav-menu');

@@ -1,0 +1,164 @@
+---
+// Rendered by both layouts, so every page (including blog posts) ends with a
+// way back into the rest of the site.
+const year = new Date().getFullYear();
+
+// Series list is derived from the posts themselves, mirroring blog.astro:
+// group by the title prefix before " - ", and only treat a group as a series
+// if it has more than one post (a lone "git reflog - ..." is Miscellaneous).
+const posts = Object.values(
+	import.meta.glob('../pages/blog/**/*.md', { eager: true })
+) as Array<{ frontmatter: { title: string; date: string; dayNumber?: number } }>;
+
+const groups = new Map<string, { count: number; latest: number; isSeries: boolean }>();
+posts.forEach(({ frontmatter }) => {
+	const title = frontmatter.title ?? '';
+	const name = title.includes(' - ') ? title.split(' - ')[0].trim() : title;
+	const date = new Date(frontmatter.date).getTime();
+	const prev = groups.get(name);
+	groups.set(name, {
+		count: (prev?.count ?? 0) + 1,
+		latest: Math.max(prev?.latest ?? 0, date),
+		isSeries: (prev?.count ?? 0) + 1 > 1 || frontmatter.dayNumber != null || !!prev?.isSeries,
+	});
+});
+
+const series = [...groups.entries()]
+	.filter(([, g]) => g.isSeries)
+	.sort((a, b) => b[1].latest - a[1].latest)
+	.map(([name]) => ({ name, id: name.toLowerCase().replace(/\s+/g, '-') }));
+
+---
+
+<footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-brand">
+			<span class="footer-name">Julia Kang</span>
+			<p class="footer-tagline">CS &amp; AI student at Purdue.</p>
+		</div>
+
+		<nav class="footer-nav" aria-label="Footer">
+			<div class="footer-col">
+				<h2 class="footer-heading">Site</h2>
+				<a href="/" class="footer-link">Home</a>
+				<a href="/about" class="footer-link">About</a>
+				<a href="/experience" class="footer-link">Experience</a>
+				<a href="/projects" class="footer-link">Projects</a>
+				<a href="/contact" class="footer-link">Contact</a>
+			</div>
+			<div class="footer-col">
+				<h2 class="footer-heading">Blog</h2>
+				<a href="/blog" class="footer-link">All posts</a>
+				{series.map(({ name, id }) => (
+					<a href={`/blog#${id}`} class="footer-link">{name}</a>
+				))}
+				<a href="/blog#miscellaneous" class="footer-link">Miscellaneous</a>
+			</div>
+			<div class="footer-col">
+				<h2 class="footer-heading">Elsewhere</h2>
+				<a href="https://github.com/julia7hk" target="_blank" class="footer-link">GitHub</a>
+				<a href="https://linkedin.com/in/julia7hk" target="_blank" class="footer-link">LinkedIn</a>
+				<a href="mailto:julia7hk@gmail.com" class="footer-link">Email</a>
+				<a href="/JuliaKang_Resume.pdf" target="_blank" class="footer-link">Resume</a>
+			</div>
+		</nav>
+	</div>
+	<div class="footer-bottom">
+		<span>&copy; {year} Julia Kang</span>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: 1px solid #d4d4d4;
+		background: #fafaf8;
+		margin-top: 4rem;
+	}
+
+	.footer-container {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 3rem 2rem 2rem;
+		display: flex;
+		gap: 3rem;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.footer-brand {
+		max-width: 260px;
+		border-left: 3px solid #5372aa;
+		padding-left: 1rem;
+	}
+
+	.footer-name {
+		font-size: 1rem;
+		font-weight: 600;
+		color: #2a2a2a;
+		letter-spacing: -0.02em;
+	}
+
+	.footer-tagline {
+		margin-top: 0.5rem;
+		font-size: 0.85rem;
+		color: #6a6a6a;
+		line-height: 1.6;
+	}
+
+	.footer-nav {
+		display: flex;
+		gap: 3rem;
+		flex-wrap: wrap;
+	}
+
+	.footer-col {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		min-width: 0;
+	}
+
+	.footer-heading {
+		font-size: 0.8rem;
+		font-weight: 700;
+		color: #2a2a2a;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin-bottom: 0.25rem;
+	}
+
+	.footer-link {
+		font-size: 0.85rem;
+		color: #6a6a6a;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.footer-link:hover {
+		color: #2a2a2a;
+	}
+
+	.footer-bottom {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 1.25rem 2rem 2rem;
+		font-size: 0.8rem;
+		color: #6a6a6a;
+		border-top: 1px solid #e4e4e4;
+	}
+
+	@media (max-width: 768px) {
+		.footer-container {
+			padding: 2rem 1rem 1.5rem;
+			gap: 2rem;
+		}
+
+		.footer-nav {
+			gap: 2rem;
+		}
+
+		.footer-bottom {
+			padding: 1rem 1rem 1.5rem;
+		}
+	}
+</style>

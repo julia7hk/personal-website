@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import profileImage from '../assets/profile.JPG';
 import Clarity from '../components/Clarity.astro';
+import Footer from '../components/Footer.astro';
 
 const { frontmatter } = Astro.props;
 const { title, date, description, prevPost, nextPost } = frontmatter;
@@ -96,6 +97,7 @@ const hasSeries = prevPost || nextPost;
 				</div>
 			</article>
 		</main>
+		<Footer />
 	</body>
 </html>
 
