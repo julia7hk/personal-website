@@ -2,46 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/profile.JPG';
-
-// Most recent posts, so the blog is reachable from the front page instead of
-// only from the navbar. Capped at one post per series so a burst of entries in
-// one project doesn't crowd out everything else.
-const posts = Object.entries(
-	import.meta.glob('./blog/**/*.md', { eager: true })
-) as Array<[string, { frontmatter: { title: string; date: string } }]>;
-
-// Same grouping as blog.astro: prefix before " - ", but a group of one is a
-// standalone post, not a series.
-const prefixOf = (title: string) =>
-	title.includes(' - ') ? title.split(' - ')[0].trim() : title;
-
-const prefixCounts = new Map<string, number>();
-posts.forEach(([, { frontmatter }]) =>
-	prefixCounts.set(prefixOf(frontmatter.title ?? ''), (prefixCounts.get(prefixOf(frontmatter.title ?? '')) ?? 0) + 1)
-);
-
-const seenSeries = new Set<string>();
-const recentPosts = posts
-	.map(([path, { frontmatter }]) => {
-		const slug = path.split('/').pop()?.replace('.md', '') ?? '';
-		const title = frontmatter.title ?? slug;
-		const prefix = prefixOf(title);
-		const isSeries = (prefixCounts.get(prefix) ?? 0) > 1;
-		return {
-			url: `/blog/${slug}`,
-			// In a series the prefix is already the label, so don't repeat it.
-			title: isSeries ? title.slice(prefix.length + 3) : title,
-			series: isSeries ? prefix : 'Miscellaneous',
-			date: frontmatter.date,
-		};
-	})
-	.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-	.filter(post => {
-		if (seenSeries.has(post.series)) return false;
-		seenSeries.add(post.series);
-		return true;
-	})
-	.slice(0, 4);
 ---
 
 <Layout title="Julia Kang - CS & AI Student at Purdue">
@@ -252,37 +212,6 @@ const recentPosts = posts
 					</div>
 					<span class="role-date">Jan 2026 &ndash; Present</span>
 				</a>
-			</div>
-		</div>
-	</section>
-
-	<section class="blog-preview animate-slide-up">
-		<div class="container">
-			<div class="section-header">
-				<h2 class="section-title">From the Blog</h2>
-				<a href="/blog" class="section-link">Read the Blog &rarr;</a>
-			</div>
-			<p class="blog-preview-intro">
-				Build logs and notes &mdash; what I tried, what broke, and what fixed it.
-			</p>
-			<div class="roles-list">
-				{recentPosts.map((post) => {
-					const [year, month, day] = post.date.split('-').map(Number);
-					const localDate = new Date(year, month - 1, day);
-					return (
-						<a href={post.url} class="role-item">
-							<div class="role-info">
-								<h3>{post.title}</h3>
-								<span class="role-org">{post.series}</span>
-							</div>
-							<span class="role-date">{localDate.toLocaleDateString('en-US', {
-								year: 'numeric',
-								month: 'short',
-								day: 'numeric'
-							})}</span>
-						</a>
-					);
-				})}
 			</div>
 		</div>
 	</section>
@@ -541,7 +470,7 @@ const recentPosts = posts
 
 	.projects-preview-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(2, 1fr);
 		gap: 1.5rem;
 	}
 
@@ -616,18 +545,6 @@ const recentPosts = posts
 	}
 
 	/* Experience Preview */
-	.blog-preview {
-		padding: 3rem 0 4rem;
-		background: #fafaf8;
-		border-top: 1px solid #e4e4e4;
-	}
-
-	.blog-preview-intro {
-		font-size: 0.9rem;
-		color: #6a6a6a;
-		margin: -0.5rem 0 1.5rem;
-	}
-
 	.experience-preview {
 		padding: 3rem 0 4rem;
 		background: #fafaf8;
@@ -815,8 +732,7 @@ const recentPosts = posts
 
 		.skills-preview,
 		.featured-projects,
-		.experience-preview,
-		.blog-preview {
+		.experience-preview {
 			padding: 2rem 0 3rem;
 		}
 
