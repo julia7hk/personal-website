@@ -1,6 +1,6 @@
 ---
 title: "FalconUp 2026 - deploy milestone 2"
-date: "2026-07-05"
+date: "2026-07-04"
 description: "Shipping milestone 2 to oc40: ghcr images instead of building on the server, a PAT for docker login, and pull-to-deploy"
 dayNumber: 7
 milestone: 2

@@ -1,6 +1,6 @@
 ---
 title: "FalconUp 2026 - redis"
-date: "2026-07-04"
+date: "2026-07-03"
 description: "Swapping my hand-rolled cache for Redis, installing it on oc40, and throwing together a quick frontend"
 dayNumber: 6
 milestone: 2
