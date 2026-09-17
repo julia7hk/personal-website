@@ -2,7 +2,7 @@
 title: "CVIRL Work - Dice vs IoU vs Hausdorff"
 date: "2026-07-16"
 description: "What each segmentation metric actually measures and penalizes"
-dayNumber: 2
+dayNumber: 3
 ---
 
 my model segments the aortic root in echo videos

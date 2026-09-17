@@ -2,7 +2,7 @@
 title: "CVIRL Work - SLURM Jobs and Purdue Gilbreth"
 date: "2026-07-13"
 description: "Accessing Gilbreth over ssh, understanding what SLURM actually is, and running srun / sbatch jobs"
-dayNumber: 1
+dayNumber: 2
 ---
 
 my lab work is deep learning on echocardiogram videos. running the model on my macbook was way too slow, so everything moved to Gilbreth.
