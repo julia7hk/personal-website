@@ -46,6 +46,27 @@ import Layout from '../layouts/Layout.astro';
 					<p class="project-description">
 						A full-stack platform that scores an investment portfolio's risk and explains the reasoning in plain English, built for new and conservative investors. Deployed and multi-user, with per-symbol signals, a portfolio-level risk grade, and a what-if trade simulator.
 					</p>
+					<p class="project-note">
+						<strong>Scope:</strong> the grade describes a portfolio&rsquo;s current exposure; it is not a prediction. Backtesting grades against realized drawdown is the next milestone. Educational analysis, not financial advice.
+					</p>
+					<div class="project-impact">
+						<h4>Impact</h4>
+						<div class="impact-metrics">
+							<div class="impact-metric">
+								<span class="impact-number">9</span>
+								<span class="impact-label">indicators behind every Buy/Hold/Sell call, each shown with its own contribution</span>
+							</div>
+							<div class="impact-metric">
+								<span class="impact-number">5</span>
+								<span class="impact-label">stress scenarios replayed against your actual holdings &mdash; four real historical windows (COVID, the 2022 selloff, Q4 2018, the 2020 recovery) plus your own worst 30-day period</span>
+							</div>
+							<div class="impact-metric">
+								<span class="impact-number">36</span>
+								<span class="impact-label">backend tests across the indicator, risk, and explainer paths</span>
+							</div>
+						</div>
+					</div>
+
 					<div class="project-highlights">
 						<h4>Key Features</h4>
 						<ul>
@@ -146,12 +167,27 @@ import Layout from '../layouts/Layout.astro';
 					<p class="project-description">
 						Undergraduate research at the Cardiovascular Imaging Research Lab (CVIRL) on predictive modeling of aortic root dilation in pediatric patients with cardiovascular diseases. Selected for the Purdue Summer Undergraduate Research Fellowship (SURF) program, Summer 2026.
 					</p>
+					<div class="project-impact">
+						<h4>Impact</h4>
+						<div class="impact-metrics">
+							<div class="impact-metric">
+								<span class="impact-number">15 &rarr; 5&ndash;7</span>
+								<span class="impact-label">minutes to annotate one echocardiogram, timed before and after on real videos</span>
+							</div>
+							<div class="impact-metric">
+								<span class="impact-number">~2.5&times;</span>
+								<span class="impact-label">faster dataset construction, for every annotator in the lab &mdash; not just me</span>
+							</div>
+						</div>
+					</div>
+
 					<div class="project-highlights">
 						<h4>Key Contributions</h4>
 						<ul>
 							<li><strong>Construct and annotate echocardiogram datasets</strong> for automated aortic wall segmentation and diameter measurement</li>
 							<li><strong>Develop machine learning models</strong> to predict progression of aortic root dilation and classify disease subtypes</li>
 							<li><strong>Integrate data annotation and modeling pipelines</strong> to improve scalability and reproducibility</li>
+							<li><strong>Rebuilt the lab&rsquo;s annotation tool</strong> by reordering its phases so no step asks for information the annotator hasn&rsquo;t given yet &mdash; removing backtracking rather than speeding up any single step</li>
 						</ul>
 					</div>
 					<div class="tech-stack">
@@ -283,12 +319,25 @@ import Layout from '../layouts/Layout.astro';
 					<p class="project-description">
 						Led development of an alumni networking platform connecting current students with graduates for mentorship and career guidance. Managed a student development team and coordinated with 40+ community members.
 					</p>
+					<div class="project-impact">
+						<h4>Impact</h4>
+						<div class="impact-metrics">
+							<div class="impact-metric">
+								<span class="impact-number">40+</span>
+								<span class="impact-label">community members interviewed before implementation began, so the feature set came from stated needs</span>
+							</div>
+							<div class="impact-metric">
+								<span class="impact-number">Since 2024</span>
+								<span class="impact-label">live in production and still running for the school after I left</span>
+							</div>
+						</div>
+					</div>
+
 					<div class="project-highlights">
-						<h4>Leadership & Impact</h4>
+						<h4>Leadership</h4>
 						<ul>
 							<li>Led <strong>student development team</strong> through full project lifecycle</li>
 							<li>Coordinated requirements gathering with <strong>40+ stakeholders</strong></li>
-							<li>Deployed <strong>production-ready application</strong> serving the school community</li>
 							<li>Implemented <strong>secure authentication and user management</strong></li>
 						</ul>
 					</div>
@@ -695,7 +744,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.project-highlights h4 {
 		font-size: 0.95rem;
-		color: #2a2a2a;
+		color: #5372aa;
 		margin-bottom: 0.75rem;
 		font-weight: 600;
 		letter-spacing: -0.01em;
@@ -727,6 +776,49 @@ import Layout from '../layouts/Layout.astro';
 		left: 0;
 		color: #2a2a2a;
 		font-weight: normal;
+	}
+
+	.project-impact {
+		margin: 0 0 1.75rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid #e4e7ee;
+	}
+
+	.project-impact h4 {
+		font-size: 0.95rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: #5372aa;
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
+
+	.impact-metrics {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+		gap: 1.1rem 1.5rem;
+	}
+
+	.impact-metric {
+		border-left: 2px solid #dde3ee;
+		padding-left: 0.85rem;
+	}
+
+	.impact-number {
+		display: block;
+		font-size: 1.5rem;
+		line-height: 1.15;
+		font-weight: 700;
+		color: #5372aa;
+		letter-spacing: -0.02em;
+		margin-bottom: 0.3rem;
+	}
+
+	.impact-label {
+		display: block;
+		font-size: 0.78rem;
+		line-height: 1.5;
+		color: #6a6a6a;
 	}
 
 	.tech-stack {
@@ -994,6 +1086,34 @@ import Layout from '../layouts/Layout.astro';
 			font-size: 0.8rem;
 			line-height: 1.55;
 			margin-bottom: 0.35rem;
+		}
+
+		.project-impact {
+			margin-bottom: 1.25rem;
+			padding-top: 1rem;
+		}
+
+		.project-impact h4 {
+			font-size: 0.8rem;
+			margin-bottom: 0.8rem;
+		}
+
+		.impact-metrics {
+			grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+			gap: 0.9rem 1rem;
+		}
+
+		.impact-metric {
+			padding-left: 0.65rem;
+		}
+
+		.impact-number {
+			font-size: 1.2rem;
+		}
+
+		.impact-label {
+			font-size: 0.72rem;
+			line-height: 1.45;
 		}
 
 		/* Tech stack */
