@@ -1,5 +1,30 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ProjectCarousel from '../components/ProjectCarousel.astro';
+import falconupLanding from '../assets/project-media/falconup-landing.png';
+import falconupTsla from '../assets/project-media/falconup-symbol-tsla.png';
+import falconupSpy from '../assets/project-media/falconup-symbol-spy.png';
+
+const falconupSlides = [
+	{
+		src: falconupLanding,
+		alt: 'The FalconUp landing page: a heading reading "Portfolio risk, measured and explained", with cards for per-symbol indicators, portfolio risk grade, and full transparency.',
+		caption: 'The landing page \u2014 per-symbol indicators, a portfolio-level risk grade, and every number traceable to the data behind it.',
+		href: 'https://falconup.julia7hk.com',
+	},
+	{
+		src: falconupTsla,
+		alt: 'FalconUp symbol view for TSLA: a one-year price chart in red above a SELL signal at 42% confidence, with indicator cards including a death cross on the SMA 50/200.',
+		caption: 'A symbol view \u2014 TSLA scores SELL at 42% confidence, with each of the nine indicators shown separately.',
+		href: 'https://falconup.julia7hk.com/symbols/TSLA',
+	},
+	{
+		src: falconupSpy,
+		alt: 'FalconUp symbol view for SPY: a one-year price chart in green above a BUY signal, with the same nine indicator cards.',
+		caption: 'The same view for SPY, which scores BUY \u2014 the call is computed per symbol, not decoration.',
+		href: 'https://falconup.julia7hk.com/symbols/SPY',
+	},
+];
 ---
 
 <Layout title="Projects - Julia Kang" description="Explore Julia Kang's portfolio of projects including ML-powered applications, full-stack web development, and data science projects.">
@@ -43,12 +68,19 @@ import Layout from '../layouts/Layout.astro';
 						<span class="project-category">Web App</span>
 					</div>
 					<div class="project-duration">Summer 2026 – Present</div>
-					<p class="project-description">
+					<div class="project-split">
+						<div class="project-split-text">
+	<p class="project-description">
 						A full-stack platform that scores an investment portfolio's risk and explains the reasoning in plain English, built for new and conservative investors. Deployed and multi-user, with per-symbol signals, a portfolio-level risk grade, and a what-if trade simulator.
 					</p>
-					<p class="project-note">
+	<p class="project-note">
 						<strong>Scope:</strong> the grade describes a portfolio&rsquo;s current exposure; it is not a prediction. Backtesting grades against realized drawdown is the next milestone. Educational analysis, not financial advice.
 					</p>
+						</div>
+						<div class="project-split-media">
+							<ProjectCarousel slides={falconupSlides} label="FalconUp screenshots" />
+						</div>
+					</div>
 					<div class="project-impact">
 						<h4>Impact</h4>
 						<div class="impact-metrics">
@@ -561,7 +593,7 @@ import Layout from '../layouts/Layout.astro';
 	}
 
 	.container {
-		max-width: 1000px;
+		max-width: 1200px;
 		margin: 0 auto;
 		padding: 0 2rem;
 	}
@@ -707,6 +739,28 @@ import Layout from '../layouts/Layout.astro';
 		font-weight: 400;
 	}
 
+	.project-split {
+		margin-bottom: 1.5rem;
+	}
+
+	.project-split-media {
+		margin-bottom: 1.5rem;
+	}
+
+	@media (min-width: 901px) {
+		.project-split {
+			display: grid;
+			grid-template-columns: 1fr 1.2fr;
+			gap: 2.25rem;
+			align-items: start;
+		}
+
+		.project-split-text > :last-child,
+		.project-split-media {
+			margin-bottom: 0;
+		}
+	}
+
 	.project-note {
 		font-size: 0.85rem;
 		line-height: 1.6;
@@ -740,6 +794,14 @@ import Layout from '../layouts/Layout.astro';
 
 	.project-highlights {
 		margin-bottom: 1.5rem;
+	}
+
+	/* The container is wider than the comfortable reading measure, so cap
+	   the text blocks rather than letting lines run the full card width. */
+	.project-description,
+	.project-highlights ul,
+	.project-note {
+		max-width: 78ch;
 	}
 
 	.project-highlights h4 {
