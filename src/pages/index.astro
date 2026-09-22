@@ -232,19 +232,22 @@ import profileImage from '../assets/profile.JPG';
 	}
 
 	.hero-content {
-		max-width: 900px;
 		display: flex;
 		align-items: flex-start;
+		justify-content: space-between;
 		gap: 3rem;
 	}
 
+	/* Wide enough to close the gap to the portrait (240px + the 3rem flex gap
+	   leaves ~848px here), while still capping the line length. */
 	.hero-text {
 		flex: 1;
+		max-width: 800px;
 	}
 
 	.profile-image-wrapper {
-		width: 200px;
-		height: 200px;
+		width: 240px;
+		height: 240px;
 		border-radius: 50%;
 		background: linear-gradient(0deg, #5372aa 0%, #141B29 100%);
 		padding: 3px;
@@ -427,7 +430,6 @@ import profileImage from '../assets/profile.JPG';
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 2rem;
-		max-width: 900px;
 	}
 
 	.skill-category h3 {

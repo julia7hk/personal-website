@@ -524,7 +524,7 @@ import Layout from '../layouts/Layout.astro';
 	.filter-buttons {
 		display: flex;
 		gap: 0.75rem;
-		justify-content: center;
+		justify-content: flex-start;
 	}
 
 	.filter-btn {
@@ -582,8 +582,6 @@ import Layout from '../layouts/Layout.astro';
 
 	.timeline-container {
 		position: relative;
-		max-width: 800px;
-		margin: 0 auto;
 	}
 
 	.timeline-headers {
@@ -888,9 +886,8 @@ import Layout from '../layouts/Layout.astro';
 
 	.competitions-grid {
 		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 2.5rem;
-		max-width: 650px;
-		margin: 0 auto;
 	}
 
 	.competition-card {
@@ -916,6 +913,7 @@ import Layout from '../layouts/Layout.astro';
 	.competition-header {
 		display: flex;
 		align-items: center;
+		flex-wrap: wrap;
 		gap: 1rem;
 		margin-bottom: 0.5rem;
 		padding-bottom: 1rem;
@@ -985,8 +983,6 @@ import Layout from '../layouts/Layout.astro';
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 		gap: 2rem;
-		max-width: 800px;
-		margin: 0 auto;
 	}
 
 	.skill-group {

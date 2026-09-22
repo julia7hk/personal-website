@@ -796,14 +796,6 @@ const falconupSlides = [
 		margin-bottom: 1.5rem;
 	}
 
-	/* The container is wider than the comfortable reading measure, so cap
-	   the text blocks rather than letting lines run the full card width. */
-	.project-description,
-	.project-highlights ul,
-	.project-note {
-		max-width: 78ch;
-	}
-
 	.project-highlights h4 {
 		font-size: 0.95rem;
 		color: #5372aa;
@@ -919,7 +911,7 @@ const falconupSlides = [
 
 	.categories-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(2, 1fr);
 		gap: 2rem;
 	}
 
@@ -974,7 +966,7 @@ const falconupSlides = [
 
 	.cta-content {
 		max-width: 700px;
-		margin: 0 auto;
+		margin: 0;
 	}
 
 	.cta h2 {

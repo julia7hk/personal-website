@@ -62,6 +62,11 @@ Its Featured Projects section (`.projects-preview-grid`) is a fixed 2×2 grid �
 - Color palette: #fafaf8 background, #2a2a2a primary text, #5372aa accent, #a9b4cd accent light
 - Responsive breakpoint at 768px
 - Card pattern: bordered containers with left accent stripe (`border-left: 3px solid #5372aa`)
+- Alignment: the `.container` (1200px) is the only centered wrapper. Blocks capped narrower than it
+  for readability stay left-aligned (`margin: 0`, not `0 auto`) so they line up with the section
+  headings, the nav logo, and the full-width sections. Deliberately centered blocks keep
+  `margin: 0 auto` — `index.astro`'s `.cta-content` (it is `text-align: center`) and
+  `blog.astro`'s `#miscellaneous` (centred under the two series columns); leave those alone.
 
 ## Deployment
 
