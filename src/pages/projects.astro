@@ -4,6 +4,9 @@ import ProjectCarousel from '../components/ProjectCarousel.astro';
 import falconupLanding from '../assets/project-media/falconup-landing.png';
 import falconupTsla from '../assets/project-media/falconup-symbol-tsla.png';
 import falconupSpy from '../assets/project-media/falconup-symbol-spy.png';
+import spotifyDashboard from '../assets/project-media/spotify-overview.png';
+import spotifyTopTracks from '../assets/project-media/spotify-top-tracks.png';
+import spotifyTasteShift from '../assets/project-media/spotify-taste-shift.png';
 
 const falconupSlides = [
 	{
@@ -25,6 +28,25 @@ const falconupSlides = [
 		href: 'https://falconup.julia7hk.com/symbols/SPY',
 	},
 ];
+
+const spotifySlides = [
+	{
+		src: spotifyDashboard,
+		alt: 'Spotify dashboard with the time-range toggle, summary stat cards, and the ranked top artists row',
+		caption: 'One toggle re-scopes every stat on the page to four weeks, six months, or all time.',
+	},
+	{
+		src: spotifyTopTracks,
+		alt: 'Ranked top tracks list beside an album panel showing where each album track places in the same ranking',
+		caption: 'Picking a track opens its album and marks which of its songs also chart in your top tracks.',
+	},
+	{
+		src: spotifyTasteShift,
+		alt: 'Three columns comparing top artists and tracks across four weeks, six months, and all time',
+		caption: 'All three windows side by side, which is a new view I created that Wrapped does not.',
+	},
+];
+
 ---
 
 <Layout title="Projects - Julia Kang" description="Explore Julia Kang's portfolio of projects including ML-powered applications, full-stack web development, and data science projects.">
@@ -149,12 +171,19 @@ const falconupSlides = [
 						<span class="project-category">Machine Learning</span>
 					</div>
 					<div class="project-duration">May 2025 &ndash; Present</div>
+					<div class="project-split">
+						<div class="project-split-text">
 					<p class="project-description">
 						A self-hosted alternative to Spotify Wrapped: a deployed dashboard that surfaces top artists, tracks, and listening stats across multiple time ranges on any day of the year rather than once every November. Next.js frontend over a Flask backend that owns all Spotify OAuth and API access, shipped as two Docker images to an Oracle Cloud VM.
 					</p>
-					<p class="project-note">
+	<p class="project-note">
 						<strong>Note on the live site:</strong> Spotify caps apps in Developer Mode at five authorized listeners, and lifting that cap requires a quota-extension approval that is not granted to personal projects. The deployment is fully public and the login flow works, but only allowlisted Spotify accounts can complete authorization &mdash; so expect the sign-in step to reject you unless I have added your account. The <a href="https://github.com/julia7hk/spotify" target="_blank">source</a> and the <a href="/blog#spotify-project">blog series</a> are the best way to see the whole thing.
 					</p>
+						</div>
+						<div class="project-split-media">
+							<ProjectCarousel slides={spotifySlides} label="Spotify Dashboard screenshots" />
+						</div>
+					</div>
 					<div class="project-highlights">
 						<h4>Key Features</h4>
 						<ul>
