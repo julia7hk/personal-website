@@ -2,6 +2,9 @@
 
 Personal website showcasing some of my experience, projects, etc.
 
+<img width="1672" height="870" alt="image" src="https://github.com/user-attachments/assets/ad892401-68e9-4bff-a6ec-a7934d026f9a" />
+
+
 ## Project Structure
 
 ```text
