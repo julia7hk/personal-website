@@ -5,18 +5,42 @@ import purdueLogo from '../assets/purdue-logo.svg';
 import headshot from '../assets/headshot.jpg';
 ---
 
-<Layout title="About - Julia Kang" description="Julia Kang's education at Purdue University &mdash; dual B.S. in Computer Science and Artificial Intelligence (May 2027) with a combined M.S. through May 2028 &mdash; and her technical skills.">
+<Layout title="About - Julia Kang" description="Julia Kang's education at Purdue University: a dual B.S. in Computer Science and Artificial Intelligence (May 2027) with a combined M.S. through May 2028, and her technical skills.">
 	<section class="about-hero">
 		<div class="container">
 			<div class="about-hero-content">
 				<div class="about-hero-text">
 					<h1 class="page-title">About Me</h1>
 					<p class="page-subtitle">
-						Passionate about leaving a lasting positive impact and being the change I want to see in the world.
+						Committed to work that leaves a lasting positive impact.
+						Most of what I have made began as something I wanted to exist, could not find, and built myself.
 					</p>
 				</div>
 				<div class="profile-image-wrapper">
 					<Image src={headshot} alt="Portrait of Julia Kang" class="profile-image" />
+				</div>
+			</div>
+			<div class="threads">
+				<div class="thread">
+					<h2 class="thread-title">Build</h2>
+					<p>
+						Two of the projects listed here are deployed and in weekly use. Neither was assigned.
+						Continued use is the reason both remain maintained.
+					</p>
+				</div>
+				<div class="thread">
+					<h2 class="thread-title">Research</h2>
+					<p>
+						Currently medical imaging. The interest is not the accuracy figure, but the narrow set of
+						cases where the model is confident and wrong.
+					</p>
+				</div>
+				<div class="thread">
+					<h2 class="thread-title">Teach</h2>
+					<p>
+						Teaching assistant for a discrete mathematics course. 
+						As I help others, explaining concepts remains the fastest way to locate the gaps in my own understanding.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -377,6 +401,35 @@ import headshot from '../assets/headshot.jpg';
 		font-size: 0.95rem;
 		color: #6a6a6a;
 		line-height: 1.7;
+		max-width: 60ch;
+	}
+
+	.threads {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+		margin-top: 3rem;
+		padding-top: 2.5rem;
+		border-top: 1px solid #e4e4e4;
+	}
+
+	.thread {
+		border-left: 3px solid #5372aa;
+		padding-left: 1.25rem;
+	}
+
+	.thread-title {
+		font-size: 1rem;
+		font-weight: 600;
+		color: #2a2a2a;
+		margin-bottom: 0.75rem;
+		letter-spacing: -0.01em;
+	}
+
+	.thread p {
+		font-size: 0.85rem;
+		color: #6a6a6a;
+		line-height: 1.7;
 	}
 
 	.education {
@@ -653,6 +706,13 @@ import headshot from '../assets/headshot.jpg';
 		.profile-image-wrapper {
 			width: 150px;
 			height: 150px;
+		}
+
+		.threads {
+			grid-template-columns: 1fr;
+			gap: 1.75rem;
+			margin-top: 2rem;
+			padding-top: 2rem;
 		}
 
 		.page-title {
