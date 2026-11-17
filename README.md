@@ -1,5 +1,7 @@
 # julia7hk.com
 
+https://julia7hk.com/
+
 Personal website showcasing some of my experience, projects, etc.
 
 <img width="1672" height="870" alt="image" src="https://github.com/user-attachments/assets/ad892401-68e9-4bff-a6ec-a7934d026f9a" />
@@ -42,6 +44,7 @@ Personal website showcasing some of my experience, projects, etc.
 - **About** (`/about`) - Background and interests
 - **Experience** (`/experience`) - Professional roles and leadership positions
 - **Projects** (`/projects`) - Technical projects and contributions
+- **Blog** (`/blog`) - Documentation of work I have done
 - **Contact** (`/contact`) - Get in touch
 
 ## Resources
